@@ -1,6 +1,6 @@
-<header id="header" class="header default">
+<header id="header" class="header default fullWidth">
     <div class="topbar">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-md-6 xs-mb-10">
                     <div class="topbar-call text-center text-md-start">
@@ -32,175 +32,168 @@
 
     <div class="menu">
         <!-- menu start -->
-        <nav id="menu" class="mega-menu">
+        <nav id="menu" class="mega-menu" style="">
             <!-- menu list items container -->
-            <section class="menu-list-items">
-                <div class="container">
+            <section class="menu-list-items" style="height: 90px;">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 position-relative">
                             <!-- menu logo -->
                             <ul class="menu-logo">
                                 <li>
-                                    <a href="index-01.html"><img id="logo_img" src="images/logo.png" alt="logo"> </a>
+                                    <a href="index-01.html"><img id="logo_img" src="{{asset('images/logo.png')}}" alt="logo"> </a>
+                                    <div class="menu-mobile-collapse-trigger"><span></span></div>
                                 </li>
                             </ul>
                             <!-- menu links -->
                             <div class="menu-bar">
-                                <ul class="menu-links">
+                                <ul class="menu-links" style="max-height: 400px; display: none;">
 
-                                    <li><a href="javascript:void(0)">Home <i class="fa fa-angle-down fa-indicator"></i></a>
-
+                                    <li class="hoverTrigger"><a href="{{route('website.home')}}">Home <i
+                                                class="fa fa-indicator"></i>
+                                            <div class="mobileTriggerButton"></div>
+                                        </a>
                                     </li>
-                                    <li><a href="javascript:void(0)">Products <i class="fa fa-angle-down fa-indicator"></i></a>
+
+                                    <li class="hoverTrigger active"><a href="{{route('website.products')}}"> Products <i
+                                                class="fa fa-angle-down fa-indicator"></i>
+                                            <div class="mobileTriggerButton"></div>
+                                        </a>
                                         <!-- drop down multilevel  -->
-                                        <div class="drop-down grid-col-5 menu-offset-4">
-                                            <!--grid row-->
-                                            <div class="grid-row">
-                                                <!--grid column 3-->
-                                                <div class="grid-col-6">
-                                                    <ul>
-                                                        <li><a href="shop-home-01.html">shop Fashion </a></li>
-                                                    </ul>
-                                                </div>
+                                        <ul class="drop-down-multilevel effect-expand-top"
+                                            style="transition: all 400ms ease 0s;">
+                                            <li class="hoverTrigger active"><a href="javascript:void(0)">Header<i
+                                                        class="ti-plus fa-indicator"></i>
+                                                    <div class="mobileTriggerButton"></div>
+                                                </a>
+                                                <ul class="drop-down-multilevel effect-expand-top"
+                                                    style="transition: all 400ms ease 0s;">
 
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="javascript:void(0)"> Solutions <i
-                                                class="fa fa-angle-down fa-indicator"></i></a>
-                                    </li>
-                                    <li><a href="javascript:void(0)"> Services and Support <i
-                                                class="fa fa-angle-down fa-indicator"></i></a>
+                                                    <li><a href="header-default.html">default </a></li>
+
+                                                    <li class="hoverTrigger"><a href="javascript:void(0)">Transparent <i
+                                                                class="ti-plus fa-indicator"></i>
+                                                            <div class="mobileTriggerButton"></div>
+                                                        </a>
+                                                        <!-- drop down second level -->
+                                                        <ul class="drop-down-multilevel effect-expand-top"
+                                                            style="transition: all 400ms ease 0s;">
+                                                            <li><a href="header-transparent.html">transparent </a></li>
+                                                            <li><a href="header-transparent-fullWidth.html">transparent
+                                                                    fullWidth </a></li>
+                                                            <li><a href="header-transparent-overlay.html">transparent
+                                                                    overlay </a></li>
+                                                            <li><a href="header-transparent-topbar.html">transparent
+                                                                    topbar </a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="hoverTrigger"><a href="javascript:void(0)">Light <i
+                                                                class="ti-plus fa-indicator"></i>
+                                                            <div class="mobileTriggerButton"></div>
+                                                        </a>
+                                                        <!-- drop down second level -->
+                                                        <ul class="drop-down-multilevel effect-expand-top"
+                                                            style="transition: all 400ms ease 0s;">
+                                                            <li><a href="header-light.html">light </a></li>
+                                                            <li><a href="header-light-topbar.html">light topbar </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="hoverTrigger"><a href="javascript:void(0)">dark <i
+                                                                class="ti-plus fa-indicator"></i>
+                                                            <div class="mobileTriggerButton"></div>
+                                                        </a>
+                                                        <!-- drop down second level -->
+                                                        <ul class="drop-down-multilevel effect-expand-top"
+                                                            style="transition: all 400ms ease 0s;">
+                                                            <li><a href="header-dark.html">dark </a></li>
+                                                            <li><a href="header-dark-topbar.html">dark topbar </a></li>
+                                                            <li><a href="header-dark-with-topbar.html">dark with
+                                                                    topbar </a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="hoverTrigger"><a href="javascript:void(0)">fancy <i
+                                                                class="ti-plus fa-indicator"></i>
+                                                            <div class="mobileTriggerButton"></div>
+                                                        </a>
+                                                        <!-- drop down second level -->
+                                                        <ul class="drop-down-multilevel effect-expand-top"
+                                                            style="transition: all 400ms ease 0s;">
+                                                            <li><a href="header-fancy.html">fancy </a></li>
+                                                            <li><a href="header-fancy-topbar.html">fancy topbar </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="hoverTrigger"><a href="javascript:void(0)">Mobile
+                                                            OffCanvas <i class="ti-plus fa-indicator"></i>
+                                                            <div class="mobileTriggerButton"></div>
+                                                        </a>
+                                                        <!-- drop down second level -->
+                                                        <ul class="drop-down-multilevel effect-expand-top"
+                                                            style="transition: all 400ms ease 0s;">
+                                                            <li><a href="header-mobile-offcanvas-transparent.html">Transparent </a>
+                                                            </li>
+                                                            <li><a href="header-mobile-offcanvas-light.html">Light </a>
+                                                            </li>
+                                                            <li><a href="header-mobile-offcanvas-dark.html">Dark </a>
+                                                            </li>
+                                                            <li><a href="header-mobile-offcanvas-fancy.html">Fancy </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="header-left-menu.html">left menu </a></li>
+                                                    <li class="active"><a href="header-fullWidth.html">fullWidth </a>
+                                                    </li>
+                                                    <li><a href="header-left-fixed.html">left fixed </a></li>
+                                                    <li><a href="header-logo-center.html">logo center </a></li>
+                                                    <li><a href="header-menu-center.html">Menu center <span
+                                                                class="badge bg-primary">New</span></a></li>
+                                                    <li><a href="header-onepage.html">onepage </a></li>
+                                                    <li><a href="header-vertical-left.html">vertical left </a></li>
+                                                </ul>
+                                            </li>
+
+
+                                            <li><a href="widget.html">Widget <span class="badge bg-primary"> 15</span>
+                                                </a></li>
+                                        </ul>
                                     </li>
 
-                                    <li><a href="javascript:void(0)"> Contact us <i
-                                                class="fa fa-angle-down fa-indicator"></i></a>
-                                        <!-- drop down full width -->
-                                        <div class="drop-down grid-col-12">
-                                            <!--grid row-->
-                                            <div class="grid-row">
-                                                <!--grid column 3-->
-                                                <div class="grid-col-3">
-                                                    <ul>
-                                                        <li><a href="elements-accordions.html"><i
-                                                                    class="fa fa-list-ul"></i> Accordions </a></li>
-                                                        <li><a href="elements-action-box.html"><i
-                                                                    class="fa fa-mouse-pointer"></i> action box </a>
-                                                        </li>
-                                                        <li><a href="elements-alerts-and-callouts.html"><i
-                                                                    class="fa fa-exclamation-triangle"></i> alerts and
-                                                                callouts </a></li>
-                                                        <li><a href="elements-animations.html"><i
-                                                                    class="fa fa-magic"></i> animations </a></li>
-                                                        <li><a href="elements-blockquotes.html"><i
-                                                                    class="fa fa-quote-right"></i> blockquotes </a></li>
-                                                        <li><a href="elements-buttons.html"><i class="fa fa-link"></i>
-                                                                buttons </a></li>
-                                                        <li><a href="elements-carousel-slider.html"><i
-                                                                    class="fa fa-exchange"></i> carousel slider </a>
-                                                        </li>
-                                                        <li><a href="elements-clients.html"><i class="fa fa-user"></i>
-                                                                clients </a></li>
-                                                        <li><a href="elements-columns.html"><i
-                                                                    class="fa fa-columns"></i> columns </a></li>
-                                                        <li><a href="elements-content-box.html"><i
-                                                                    class="fa fa-file-text-o"></i> content box </a></li>
-                                                        <li><a href="elements-countdown-timer.html"><i
-                                                                    class="fa fa-clock-o"></i> countdown timer </a></li>
-                                                        <li><a href="elements-counter.html"><i
-                                                                    class="fa fa-sort-numeric-asc"></i> counter </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!--grid column 3-->
-                                                <div class="grid-col-3">
-                                                    <ul>
-                                                        <li><a href="elements-data-table.html"><i
-                                                                    class="fa fa-table"></i> data table </a></li>
-                                                        <li><a href="elements-datatables.html"><i
-                                                                    class="fa fa-database"></i> datatables </a></li>
-                                                        <li><a href="elements-datepicker.html"><i
-                                                                    class="fa fa-calendar"></i> datepicker </a></li>
-                                                        <li><a href="elements-dropcap-highlight.html"><i
-                                                                    class="fa fa-lightbulb-o"></i> dropcap highlight
-                                                            </a></li>
-                                                        <li><a href="elements-feature-box.html"><i
-                                                                    class="fa fa-square-o"></i> feature box </a></li>
-                                                        <li><a href="elements-form.html"><i class="fa fa-at"></i> form
-                                                            </a></li>
-                                                        <li><a href="elements-gallery.html"><i class="fa fa-th"></i>
-                                                                gallery </a></li>
-                                                        <li><a href="elements-headings.html"><i class="fa fa-font"></i>
-                                                                headings </a></li>
-                                                        <li><a href="elements-icons.html"><i
-                                                                    class="fa fa-font-awesome"></i> icons </a></li>
-                                                        <li><a href="elements-labels.html"><i class="fa fa-tag"></i>
-                                                                labels </a></li>
-                                                        <li><a href="elements-lightbox.html"><i
-                                                                    class="fa fa-arrows-alt"></i> lightbox </a></li>
-                                                        <li><a href="elements-lists-panels.html"><i
-                                                                    class="fa fa-list-ol"></i> lists panels </a></li>
-                                                    </ul>
-                                                </div>
-                                                <!--grid column 3-->
-                                                <div class="grid-col-3">
-                                                    <ul>
-                                                        <li><a href="elements-lists-style.html"><i
-                                                                    class="fa fa-list-ul"></i> lists style </a></li>
-                                                        <li><a href="elements-maps.html"><i
-                                                                    class="fa fa-map-marker"></i> maps </a></li>
-                                                        <li><a href="elements-modal-popovers.html"><i
-                                                                    class="fa fa-file-image-o"></i> modal popovers </a>
-                                                        </li>
-                                                        <li><a href="elements-navigation.html"><i
-                                                                    class="fa fa-bars"></i> navigation </a></li>
-                                                        <li><a href="elements-newsletter.html"><i
-                                                                    class="fa fa-envelope-o"></i> newsletter </a></li>
-                                                        <li><a href="elements-pagination.html"><i
-                                                                    class="fa fa-ellipsis-h"></i> pagination </a></li>
-                                                        <li><a href="elements-pie-chart.html"><i
-                                                                    class="fa fa-pie-chart"></i> pie chart </a></li>
-                                                        <li><a href="elements-post-style.html"><i
-                                                                    class="fa fa-file-text-o"></i> post style </a></li>
-                                                        <li><a href="elements-pricing-tables.html"><i
-                                                                    class="fa fa-table"></i> pricing tables </a></li>
-                                                        <li><a href="elements-process-steps.html"><i
-                                                                    class="fa fa-step-forward"></i> process steps </a>
-                                                        </li>
-                                                        <li><a href="elements-responsive-utilities.html"><i
-                                                                    class="fa fa-mobile"></i> responsive utilities </a>
-                                                        </li>
-                                                        <li><a href="elements-sections.html"><i
-                                                                    class="fa fa-server"></i> sections </a></li>
-                                                    </ul>
-                                                </div>
-                                                <!--grid column 3-->
-                                                <div class="grid-col-3">
-                                                    <ul>
-                                                        <li><a href="elements-select.html"><i
-                                                                    class="fa fa-hand-o-up"></i> select </a></li>
-                                                        <li><a href="elements-separators.html"><i
-                                                                    class="fa fa-minus"></i> separators </a></li>
-                                                        <li><a href="elements-skills.html"><i
-                                                                    class="fa fa-align-left"></i> skills </a></li>
-                                                        <li><a href="elements-social-icon.html"><i
-                                                                    class="fa fa-share-alt"></i> social icon </a></li>
-                                                        <li><a href="elements-tabs.html"><i class="fa fa-tasks"></i>
-                                                                tabs </a></li>
-                                                        <li><a href="elements-team.html"><i class="fa fa-users"></i>
-                                                                team </a></li>
-                                                        <li><a href="elements-testimonials.html"><i
-                                                                    class="fa fa-comments-o"></i> testimonials </a></li>
-                                                        <li><a href="elements-typography.html"><i
-                                                                    class="fa fa-font"></i> typography </a></li>
-                                                        <li><a href="elements-video-audio.html"><i
-                                                                    class="fa fa-video-camera"></i> video audio </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <li class="hoverTrigger"><a href="{{route('website.solutions')}}">Solutions <i
+                                                class="fa fa-angle-down fa-indicator">
+
+                                            </i>
+                                            <div class="mobileTriggerButton"></div>
+                                        </a>
+                                        <!-- drop down multilevel  -->
+                                        <ul class="drop-down-multilevel effect-expand-top"
+                                            style="transition: all 400ms ease 0s;">
+                                            <li class="hoverTrigger">
+                                                <a href="javascript:void(0)">blog classic
+                                                    <i class="ti-plus fa-indicator"></i>
+                                                    <div class="mobileTriggerButton"></div>
+                                                </a>
+
+                                                <!-- drop down second level -->
+                                                <ul class="drop-down-multilevel effect-expand-top"
+                                                    style="transition: all 400ms ease 0s;">
+                                                    <li><a href="blog-classic-left-sidebar.html">left sidebar</a></li>
+                                                </ul>
+                                            </li>
+
+                                        </ul>
                                     </li>
+
+                                    <li class="hoverTrigger"><a href="{{route('website.news')}}">News <i class="fa fa-indicator"></i>
+                                            <div class="mobileTriggerButton"></div>
+                                        </a>
+                                    </li>
+                                    <li class="hoverTrigger"><a href="{{route('website.about')}}">About Us <i class="fa fa-indicator"></i>
+                                            <div class="mobileTriggerButton"></div>
+                                        </a>
+                                    </li>
+
+
                                 </ul>
                                 <div class="search-cart">
                                     <div class="search">
@@ -212,50 +205,6 @@
                                                 <button class="search-button" type="submit"><i
                                                         class="fa fa-search not-click"></i></button>
                                             </form>
-                                        </div>
-                                    </div>
-                                    <div class="shpping-cart">
-                                        <a class="cart-btn" href="#"> <i class="fa fa-shopping-cart icon"></i> <strong
-                                                class="item">2</strong></a>
-                                        <div class="cart">
-                                            <div class="cart-title">
-                                                <h6 class="uppercase mb-0">Shopping cart</h6>
-                                            </div>
-                                            <div class="cart-item">
-                                                <div class="cart-image">
-                                                    <img class="img-fluid" src="images/shop/01.jpg" alt="">
-                                                </div>
-                                                <div class="cart-name clearfix">
-                                                    <a href="#">Product name <strong>x2</strong> </a>
-                                                    <div class="cart-price">
-                                                        <del>$24.99</del>
-                                                        <ins>$12.49</ins>
-                                                    </div>
-                                                </div>
-                                                <div class="cart-close">
-                                                    <a href="#"> <i class="fa fa-times-circle"></i> </a>
-                                                </div>
-                                            </div>
-                                            <div class="cart-item">
-                                                <div class="cart-image">
-                                                    <img class="img-fluid" src="images/shop/01.jpg" alt="">
-                                                </div>
-                                                <div class="cart-name clearfix">
-                                                    <a href="#">Product name <strong>x2</strong></a>
-                                                    <div class="cart-price">
-                                                        <del>$24.99</del>
-                                                        <ins>$12.49</ins>
-                                                    </div>
-                                                </div>
-                                                <div class="cart-close">
-                                                    <a href="#"> <i class="fa fa-times-circle"></i> </a>
-                                                </div>
-                                            </div>
-                                            <div class="cart-total">
-                                                <h6 class="mb-15"> Total: $104.00</h6>
-                                                <a class="button" href="shop-shopping-cart.html">View Cart</a>
-                                                <a class="button black" href="shop-checkout.html">Checkout</a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

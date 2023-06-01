@@ -5,7 +5,7 @@ Design and Developed by: potenzaglobalsolutions.com
 
 NOTE: This file contains the styling for the agency-02 Template. You can edit/add anything in this file!
 */
- 
+
 .button, .form-control, #back-to-top .top, .footer-Newsletter .form-control, .skill-bar, .nice-select { border-radius: 0; }
 
  /*banner-agency-02*/
@@ -23,7 +23,7 @@ NOTE: This file contains the styling for the agency-02 Template. You can edit/ad
 .agency-02-about h3:before { position: absolute; content: ""; left: -50px; top: -20px; width: 116px; height: 90px; background: url(../../../demo-one-page/agency-02/images/pattern-02.png); }
 .agency-02-about .agency-02-about-content-right h3:before { left: inherit; position: absolute; content: ""; right: 0px; top: -30px; width: 116px; height: 90px; background: url(../../../demo-one-page/agency-02/images/pattern-02.png); }
 
-/*services-text */
+/*solutions-text */
 .services-text-box-black { background: #050801;  }
 .skill-bar { background: #d12326; }
 
@@ -36,7 +36,7 @@ NOTE: This file contains the styling for the agency-02 Template. You can edit/ad
 
 /*agency-feature*/
 .agency-feature { padding: 60px 40px; position:relative; }
-.agency-feature span { position: absolute; font-size: 60px; line-height: 60px; color: rgba(0, 0, 0, .2); } 
+.agency-feature span { position: absolute; font-size: 60px; line-height: 60px; color: rgba(0, 0, 0, .2); }
 .agency-feature h3 { line-height: 60px; }
 .agency-bg { background: rgba(0, 0, 0, 0.06); }
 .black-bg .agency-feature span { color: rgba(255, 255, 255, 0.2); }
