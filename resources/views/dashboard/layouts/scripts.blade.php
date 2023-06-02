@@ -10,7 +10,7 @@
 <script src="{{asset('dashboard/js/plugins-jquery.js')}}"></script>
 
 <!-- plugin_path -->
-<script>var plugin_path = '/dashboard/js/';</script>
+<script> var plugin_path = '/dashboard/js/';</script>
 
 <!-- chart -->
 <script src="{{asset('dashboard/js/chart-init.js')}}"></script>

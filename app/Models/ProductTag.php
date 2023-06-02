@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attributes extends Model
+class ProductTag extends Model
 {
     use HasFactory;
-    protected $table = 'attributes';
-    protected $primaryKey = 'id';
+
+    protected $table = 'product_tags';
     public $timestamps = true;
 
     public function product()
     {
         return $this->belongsTo(Product::class, 'product_id');
-    }
-
-    public function attributeValues()
-    {
-        return $this->hasMany(AttributeValues::class, 'attribute_id');
     }
 }

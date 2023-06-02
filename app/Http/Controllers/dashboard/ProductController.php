@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attributes;
 use App\Models\Product;
 use App\Models\Category;
+
 //use App\Models\UserActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -64,10 +65,7 @@ class ProductController extends Controller
             'meta_description' => 'nullable|string',
             'image' => 'image',
             'image.*' => 'image|mimes:jpg,jpeg,png',
-
-            'attribute_name' => 'required|string',
-            'attribute_name' => 'required|string',
-
+            'attributes' => 'nullable|array',
         ];
     }
 
@@ -125,43 +123,54 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-
         $validated_data = $request->validate($this->StoreValidationRules());
+
         try {
-//        dd($validated_data);
             $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
             $object->sort_number = $object->id;
 
-            if ($request->has('image')) {
-                $image = $validated_data["image"];
-                $img_file_path = Storage::disk('public_images')->put('products', $image);
-                $image_name = $request->file('image')->getClientOriginalName();
-                $image_url = getMediaUrl($img_file_path);
-                $object->image_url = $image_url;
-                $object->image_name = $image_name;
-                $object->update();
-            }
-            if ($request->has('attributes')) {
-                foreach ($request->input('attributes') as $attribute) {
-                    Attributes::create([
-                        'product_id' => $object->id,
-                        'name' => $attribute['attribute_name'],
-                        'value' => $attribute['attribute_value'],
+//            if ($request->has('image')) {
+//                $image = $validated_data["image"];
+//                $img_file_path = Storage::disk('public_images')->put('products', $image);
+//                $image_name = $request->file('image')->getClientOriginalName();
+//                $image_url = getMediaUrl($img_file_path);
+//                $object->image_url = $image_url;
+//                $object->image_name = $image_name;
+//                $object->update();
+//            }
+
+
+            if ($request->hasFile('product_images')) {
+                $productImages = $request->file('product_images');
+                foreach ($productImages as $image) {
+                    $img_file_path = Storage::disk('public_images')->put('products', $image);
+                    $image_name = $image->getClientOriginalName();
+                    $image_url = getMediaUrl($img_file_path);
+
+                    $object->media()->create([
+                        'image_url' => $image_url,
+                        'image_name' => $image_name,
                     ]);
                 }
             }
 
-
-
             if ($request->has('attributes')) {
                 foreach ($request->input('attributes') as $attribute) {
-                    Attributes::create([
+                    $newAttribute = Attributes::create([
                         'product_id' => $object->id,
                         'name' => $attribute['attribute_name'],
-                        'value' => $attribute['attribute_value'],
                     ]);
+
+                    if (isset($attribute['attribute_values'])) {
+                        foreach ($attribute['attribute_values'] as $value) {
+                            $newAttribute->values()->create([
+                                'value' => $value,
+                            ]);
+                        }
+                    }
                 }
             }
+
 
             $log_message = trans('products.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);

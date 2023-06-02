@@ -25,6 +25,16 @@ class Product extends Model
         return $this->hasMany(Attributes::class, 'product_id');
     }
 
+    public function media()
+    {
+        return $this->hasMany(ProductMedia::class, 'product_id');
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(ProductTag::class, 'product_id');
+    }
+
 
 
 }
