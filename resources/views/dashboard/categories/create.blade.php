@@ -107,8 +107,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_title">Meta Title</label>
-                                            <input name="meta_title" type="text" class="form-control" id="meta_title"
-                                                   placeholder="Meta Title">
+                                            <input name="meta_title" type="text" class="form-control" value="{{old('meta_title')}}" id="meta_title" placeholder="Meta Title">
                                             @if($errors->has('meta_title'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('meta_title') }}
@@ -119,7 +118,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_description">Meta Description</label>
                                             <textarea name="meta_description" class="form-control" id="meta_description"
-                                                      rows="2"></textarea>
+                                                      rows="2"> {{old('meta_description')}}</textarea>
                                             @if($errors->has('meta_description'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('meta_description') }}

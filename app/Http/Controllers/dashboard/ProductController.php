@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Attributes;
 use App\Models\Product;
 use App\Models\Category;
@@ -55,17 +57,20 @@ class ProductController extends Controller
     private function StoreValidationRules()
     {
         return [
+            'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|min:3|max:200',
-            'sku' => 'nullable|string|min:3|max:30',
-            'description' => 'string|min:3|max:1000',
+            'sku' => 'required|string|min:3|max:30',
+            'description' => 'required|string|min:3|max:1000',
             'prices' => 'nullable|numeric',
             'category_id' => 'nullable|exists:categories,id',
-            'status' => 'nullable|in:active,inactive',
+            'status' => 'required|in:active,inactive',
             'meta_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
-            'image' => 'image',
-            'image.*' => 'image|mimes:jpg,jpeg,png',
-            'attributes' => 'nullable|array',
+            'image' => 'required|array',
+            'image.*' => 'required|image|mimes:jpg,jpeg,png',
+            'attributes' => 'array',
+            'attributes.*.key' => 'required|string',
+            'attributes.*.value' => 'required|string',
         ];
     }
 
@@ -122,29 +127,29 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
         $validated_data = $request->validate($this->StoreValidationRules());
-
         try {
             $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
             $object->sort_number = $object->id;
 
-//            if ($request->has('image')) {
-//                $image = $validated_data["image"];
-//                $img_file_path = Storage::disk('public_images')->put('products', $image);
-//                $image_name = $request->file('image')->getClientOriginalName();
-//                $image_url = getMediaUrl($img_file_path);
-//                $object->image_url = $image_url;
-//                $object->image_name = $image_name;
-//                $object->update();
-//            }
+            if ($request->hasFile('image')) {
+                $productImages = $request->file('image');
+                if (is_array($productImages)) {
+                    foreach ($productImages as $image) {
+                        // Process each file
+                        $img_file_path = Storage::disk('public_images')->put('products', $image);
+                        $image_name = $image->getClientOriginalName();
+                        $image_url = getMediaUrl($img_file_path);
 
-
-            if ($request->hasFile('product_images')) {
-                $productImages = $request->file('product_images');
-                foreach ($productImages as $image) {
-                    $img_file_path = Storage::disk('public_images')->put('products', $image);
-                    $image_name = $image->getClientOriginalName();
+                        $object->media()->create([
+                            'image_url' => $image_url,
+                            'image_name' => $image_name,
+                        ]);
+                    }
+                } else {
+                    // Process the single file
+                    $img_file_path = Storage::disk('public_images')->put('products', $productImages);
+                    $image_name = $productImages->getClientOriginalName();
                     $image_url = getMediaUrl($img_file_path);
 
                     $object->media()->create([
@@ -154,34 +159,37 @@ class ProductController extends Controller
                 }
             }
 
-            if ($request->has('attributes')) {
-                foreach ($request->input('attributes') as $attribute) {
-                    $newAttribute = Attributes::create([
-                        'product_id' => $object->id,
-                        'name' => $attribute['attribute_name'],
-                    ]);
 
-                    if (isset($attribute['attribute_values'])) {
-                        foreach ($attribute['attribute_values'] as $value) {
-                            $newAttribute->values()->create([
-                                'value' => $value,
-                            ]);
-                        }
-                    }
+            if ($request->has('attributes')) {
+                foreach ($request->attributes as $attribute) {
+                    $object->attributes()->create([
+                        'name' => $attribute->key,
+                        'value' => $attribute->value,
+                    ]);
                 }
             }
 
+
+            $object->save();
 
             $log_message = trans('products.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);
 
             return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);
         } catch (\Exception $ex) {
+//            return $ex->getMessage();
             Log::error($ex->getMessage());
             return redirect()->route($this->create_view)->with('error', $this->error_message);
         }
 
+
     }
+
+
+
+
+
+
 
     public function show(string $id)
     {

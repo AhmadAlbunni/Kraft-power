@@ -9,6 +9,8 @@ class ProductMedia extends Model
 {
     use HasFactory;
     protected $table = 'product_media';
+    protected $fillable = array('image_name','image_url','status','sort_number','product_id');
+
 
     public function product()
     {

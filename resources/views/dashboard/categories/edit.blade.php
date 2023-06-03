@@ -46,7 +46,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            
+
                                             @if($errors->has('parent_id'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('parent_id') }}

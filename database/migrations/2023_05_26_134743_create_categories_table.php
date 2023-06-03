@@ -11,12 +11,11 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->bigInteger('parent_id')->default('0');
             $table->string('image_name')->nullable();
             $table->string('image_url')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->integer('sort_number');
+            $table->integer('sort_number')->nullable()->default('0');
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->timestamps();
