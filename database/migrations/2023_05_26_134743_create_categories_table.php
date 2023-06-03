@@ -13,6 +13,8 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->string('image_name')->nullable();
+            $table->string('image_url')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->integer('sort_number');
             $table->text('meta_title')->nullable();

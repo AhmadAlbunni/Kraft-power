@@ -29,7 +29,7 @@ class ProductController extends Controller
 //    private $index_route;
 //    private $model_instance;
     private $success_message;
-//    private $error_message;
+    private $error_message;
 //    private $update_success_message;
 //    private $update_error_message;
 
@@ -71,7 +71,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::all();
+        $products = $this->model_instance::all();
         return view($this->index_view, compact(['products']));
     }
 

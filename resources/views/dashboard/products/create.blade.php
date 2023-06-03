@@ -90,10 +90,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Product State</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="status"
-                                                       id="activeState"
-                                                       value="active"
-                                                       checked>
+                                                <input class="form-check-input" type="radio" name="status" id="activeState" value="active">
                                                 @if($errors->has('status'))
                                                     <div class="alert alert-danger" role="alert">
                                                         {{ $errors->first('status') }}
@@ -104,9 +101,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="status"
-                                                       id="inactiveState"
-                                                       value="inactive">
+                                                <input class="form-check-input" type="radio" name="status" id="inactiveState" value="inactive">
                                                 <label class="form-check-label" for="inactiveState">
                                                     Inactive
                                                 </label>
