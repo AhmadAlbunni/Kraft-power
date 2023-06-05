@@ -50,7 +50,6 @@
                                     <td>{{$product->sku}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->category->name}}</td>
-
                                     <td>
                                         <span
                                             class="@if($product->status == 'active')text-success @else text-danger @endif ">{{$product->status}} </span>
