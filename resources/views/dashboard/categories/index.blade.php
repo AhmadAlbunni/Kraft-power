@@ -34,7 +34,9 @@
                                 <td>{{$category->sort_number}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>{{$category->description}}</td>
-                                <td> <label class="badge {{ $category->status === 'active' ? 'bg-success' : 'bg-danger' }}">{{$category->status}}</label> </td>
+                                <td><span
+                                            class="@if($category->status == 'active')text-success @else text-danger @endif ">{{$category->status}} </span>
+                                </td>
                                 <td>
                                     <div class="row ">
                                         <a class="pe-2" href="{{route('dashboard.categories.edit',$category->id)}}"> <i class="fa fa-pencil"></i></a>

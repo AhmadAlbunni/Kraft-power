@@ -36,10 +36,12 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label class="form-label" for="category_id">Category Name</label>
-                                            <select required name="category_id" class="form-select form-select-lg mb-3" id="category_id">
+                                            <select required name="category_id" class="form-select form-select-lg mb-3"
+                                                    id="category_id">
                                                 <option selected disabled>Category</option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                    <option
+                                                        value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                                         {{$category->name}}
                                                     </option>
                                                 @endforeach
@@ -53,7 +55,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="sku">Product Sku</label>
-                                            <input required name="sku" type="text" class="form-control" value="{{old('sku')}}" id="sku" placeholder="Ex.. Product-01">
+                                            <input required name="sku" type="text" class="form-control"
+                                                   value="{{old('sku')}}" id="sku" placeholder="Ex.. Product-01">
                                             @if($errors->has('sku'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('sku') }}
@@ -63,7 +66,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="name">Product Name</label>
-                                            <input required name="name" type="text" class="form-control" value="{{old('name')}}" id="name" placeholder="Enter Product Name">
+                                            <input required name="name" type="text" class="form-control"
+                                                   value="{{old('name')}}" id="name" placeholder="Enter Product Name">
                                             @if($errors->has('name'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('name') }}
@@ -91,14 +95,18 @@
                                         <div class="mb-3">
                                             <label class="form-label">Product State</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="status" id="activeState" value="active" {{ old('status') === 'active' ? 'checked' : '' }}>
+                                                <input class="form-check-input" type="radio" name="status"
+                                                       id="activeState"
+                                                       value="active" {{ old('status') === 'active' ? 'checked' : '' }}>
 
                                                 <label class="form-check-label" for="activeState">
                                                     Active
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="status" id="activeState" value="inactive" {{ old('status') === 'inactive' ? 'checked' : '' }}>
+                                                <input class="form-check-input" type="radio" name="status"
+                                                       id="activeState"
+                                                       value="inactive" {{ old('status') === 'inactive' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="inactiveState">
                                                     Inactive
                                                 </label>
@@ -111,7 +119,9 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_title">Meta Title</label>
-                                            <input name="meta_title" type="text" class="form-control" value="{{old('meta_title')}}" id="meta_title" placeholder="Meta Title">
+                                            <input name="meta_title" type="text" class="form-control"
+                                                   value="{{old('meta_title')}}" id="meta_title"
+                                                   placeholder="Meta Title">
                                             @if($errors->has('meta_title'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('meta_title') }}
@@ -132,9 +142,10 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label d-block" for="image">Product Image</label>
-                                            <input name="image[]" type="file" value="{{old('image')}}" class="form-control" id="image" multiple>
+                                            <input name="image[]" type="file" value="{{old('image')}}"
+                                                   class="form-control" id="image" multiple>
 
-                                        @if($errors->has('image'))
+                                            @if($errors->has('image'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('image') }}
                                                 </div>
@@ -153,15 +164,21 @@
                                             <div class="row mb-20">
                                                 <div class="row mb-3 attribute-row">
                                                     <div class="col-md-5">
-                                                        <input type="text" name="attributes[][key]" value="{{old('attributes.*.key')}}" class="form-control attribute-key" placeholder="Attribute Key">
-                                                        @if($errors->has('attributes.*.key'))
+                                                        <input type="text" name="attributes[][name]"
+                                                               value="{{old('attributes.*.name')}}"
+                                                               class="form-control attribute-name"
+                                                               placeholder="Attribute name">
+                                                        @if($errors->has('attributes.*.name'))
                                                             <div class="alert alert-danger" role="alert">
-                                                                {{ $errors->first('attributes.*.key') }}
+                                                                {{ $errors->first('attributes.*.name') }}
                                                             </div>
                                                         @endif
                                                     </div>
                                                     <div class="col-md-5">
-                                                        <input type="text" name="attributes[][value]" value="{{old('attributes.*.value')}}" class="form-control attribute-value" placeholder="Attribute Value">
+                                                        <input type="text" name="attributes[][value]"
+                                                               value="{{old('attributes.*.value')}}"
+                                                               class="form-control attribute-value"
+                                                               placeholder="Attribute Value">
                                                         @if($errors->has('attributes.*.value'))
                                                             <div class="alert alert-danger" role="alert">
                                                                 {{ $errors->first('attributes.*.value') }}
@@ -169,25 +186,20 @@
                                                         @endif
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <button class="btn btn-danger remove-attribute-btn" data-repeater-delete="" type="button"> Remove</button>
+                                                        <button class="btn btn-danger remove-attribute-btn" data-repeater-delete="" type="button"> Remove
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group clearfix mb-20">
                                         <input class="btn btn-primary" data-repeater-create="" type="button" value="Add Attribute">
                                     </div>
                                 </div>
-
                             </div>
-
-
                             <button id="submitBtn" type="submit" class="btn btn-success">Submit</button>
                         </div>
-
-
                     </form>
                 </div>
             </div>

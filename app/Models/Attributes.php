@@ -12,7 +12,7 @@ class Attributes extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
 
-    protected $fillable = array('name','values','product_id');
+    protected $fillable = array('name','value','product_id');
 
     public function product()
     {

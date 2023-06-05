@@ -42,7 +42,34 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <!-- Data rows will be dynamically loaded via AJAX -->
+
+
+                            @foreach($products as $product )
+                                <tr>
+                                    <td>{{$product->id}}</td>
+                                    <td>{{$product->sku}}</td>
+                                    <td>{{$product->name}}</td>
+                                    <td>{{$product->category->name}}</td>
+
+                                    <td>
+                                        <span
+                                            class="@if($product->status == 'active')text-success @else text-danger @endif ">{{$product->status}} </span>
+                                    </td>
+                                    <td class="tr-image"><img class="image-20" src="{{$product->image_url}}"></td>
+                                    <td>
+                                        <div class="row ">
+                                            <a class="pe-2" href="{{route('dashboard.products.edit',$product->id)}}"> <i
+                                                    class="fa fa-pencil"></i></a>
+                                            <form method="POST" action="{{route('dashboard.products.destroy',$product->id)}}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button  class="fa fa-trash-o text-danger" onclick="return confirm('Are you sure you want to delete this {{$product->name}} ')">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -44,7 +44,10 @@ class CategoryController extends Controller
     {
 
         $categories = $this->model_instance::all();
+
         return view($this->index_view, compact(['categories']));
+
+
     }
 
     public function create()

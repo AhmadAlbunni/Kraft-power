@@ -14,9 +14,9 @@ class Product extends Model
     protected $fillable = array('name', 'sku', 'description','price','image_name','image_url','category_id','status','sort_number','meta_title','meta_description',);
 
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(Category::class, 'product_category', 'product_id', 'category_id');
+        return $this->belongsTo(Category::class,  'category_id');
     }
 
 

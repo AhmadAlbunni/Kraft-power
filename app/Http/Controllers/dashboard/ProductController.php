@@ -54,30 +54,41 @@ class ProductController extends Controller
 
     }
 
-    private function StoreValidationRules()
-    {
-        return [
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|min:3|max:200',
-            'sku' => 'required|string|min:3|max:30',
-            'description' => 'required|string|min:3|max:1000',
-            'prices' => 'nullable|numeric',
-            'category_id' => 'nullable|exists:categories,id',
-            'status' => 'required|in:active,inactive',
-            'meta_title' => 'nullable|string',
-            'meta_description' => 'nullable|string',
-            'image' => 'required|array',
-            'image.*' => 'required|image|mimes:jpg,jpeg,png',
-            'attributes' => 'array',
-            'attributes.*.key' => 'required|string',
-            'attributes.*.value' => 'required|string',
-        ];
-    }
+//    private function StoreValidationRules()
+//    {
+//        return [
+//            'category_id' => 'required|exists:categories,id',
+//            'name' => 'required|string|min:3|max:200',
+//            'sku' => 'required|string|min:3|max:30',
+//            'description' => 'required|string|min:3|max:1000',
+//            'prices' => 'nullable|numeric',
+//            'category_id' => 'nullable|exists:categories,id',
+//            'status' => 'required|in:active,inactive',
+//            'meta_title' => 'nullable|string',
+//            'meta_description' => 'nullable|string',
+//            'image' => 'required|array',
+//            'image.*' => 'required|image|mimes:jpg,jpeg,png',
+//            'attributes' => 'array',
+//            'attributes.*.name' => 'required|string',
+//            'attributes.*.value' => 'required|string',
+//
+//        ];
+//    }
 
     public function index()
     {
-        $products = $this->model_instance::all();
-        return view($this->index_view, compact(['products']));
+        $filter = request()->has('filter') ? request()->filter : 'all';
+
+
+        if ($filter == "all") {
+            $products = $this->model_instance::all()->sortBy('id');
+        } else
+            $products = $this->model_instance::all()->sortBy('id');
+
+        $categories = Category::where('status', '=', 'active')->get();
+
+
+        return view($this->index_view, compact(['products', 'categories', 'filter']));
     }
 
     public function getProductsData(Request $request)
@@ -119,15 +130,15 @@ class ProductController extends Controller
     public function create()
     {
         // Fetch categories for dropdown
-        $categories = Category::all();
+        $categories = Category::where('status', '=', 'active')->get();
 
         return view($this->create_view, compact('categories'));
     }
 
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $validated_data = $request->validate($this->StoreValidationRules());
+        $validated_data = $request->validated();
         try {
             $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
             $object->sort_number = $object->id;
@@ -136,7 +147,6 @@ class ProductController extends Controller
                 $productImages = $request->file('image');
                 if (is_array($productImages)) {
                     foreach ($productImages as $image) {
-                        // Process each file
                         $img_file_path = Storage::disk('public_images')->put('products', $image);
                         $image_name = $image->getClientOriginalName();
                         $image_url = getMediaUrl($img_file_path);
@@ -146,26 +156,16 @@ class ProductController extends Controller
                             'image_name' => $image_name,
                         ]);
                     }
-                } else {
-                    // Process the single file
-                    $img_file_path = Storage::disk('public_images')->put('products', $productImages);
-                    $image_name = $productImages->getClientOriginalName();
-                    $image_url = getMediaUrl($img_file_path);
-
-                    $object->media()->create([
-                        'image_url' => $image_url,
-                        'image_name' => $image_name,
-                    ]);
                 }
             }
 
-
             if ($request->has('attributes')) {
-                foreach ($request->attributes as $attribute) {
+                foreach ($request->get('attributes') as $attribute) {
                     $object->attributes()->create([
-                        'name' => $attribute->key,
-                        'value' => $attribute->value,
+                        'name' => $attribute['name'],
+                        'value' => $attribute['value'],
                     ]);
+
                 }
             }
 
@@ -177,18 +177,13 @@ class ProductController extends Controller
 
             return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);
         } catch (\Exception $ex) {
-//            return $ex->getMessage();
+
             Log::error($ex->getMessage());
             return redirect()->route($this->create_view)->with('error', $this->error_message);
         }
 
 
     }
-
-
-
-
-
 
 
     public function show(string $id)
