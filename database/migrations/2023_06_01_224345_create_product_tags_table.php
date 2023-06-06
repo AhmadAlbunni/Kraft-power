@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('tag');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->bigInteger('sort_number')->nullable();
             $table->timestamps();
 
         });

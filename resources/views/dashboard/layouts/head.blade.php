@@ -16,7 +16,8 @@
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard/css/style.css')}}" />
 
-
+    {{--    Tagify - tags input component Library--}}
+    <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 
 
 </head>

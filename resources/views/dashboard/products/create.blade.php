@@ -1,4 +1,9 @@
 @extends('dashboard.layouts.app')
+@section('style')
+
+
+@endsection
+
 
 @section('content')
     <div class="page-title">
@@ -140,11 +145,27 @@
                                             @endif
                                             <div id="metaDescriptionError" class="invalid-feedback"></div>
                                         </div>
+
+
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="product_tags">Product Tags</label>
+                                            <div class="tag-input">
+                                                <input type="text" name="product_tags" class="form-control" value="{{ old('product_tags')}}" id="product_tags" placeholder="Product Tags" />
+                                            </div>
+                                            @if ($errors->has('product_tags'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('product_tags') }}
+                                                </div>
+                                            @endif
+                                            <div id="productTagsError" class="invalid-feedback"></div>
+                                        </div>
+
+
                                         <div class="mb-3">
                                             <label class="form-label d-block" for="image">Product Image</label>
                                             <input name="image[]" type="file" value="{{old('image')}}"
                                                    class="form-control" id="image" multiple>
-
                                             @if($errors->has('image'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('image') }}
@@ -209,6 +230,15 @@
 
 
 @section('scripts')
+
+
+    <script>
+        element = document.getElementById('product_tags');
+        tags = new Tagify(element, {
+            delimiters: ';'
+        });
+
+    </script>
 
 @endsection
 

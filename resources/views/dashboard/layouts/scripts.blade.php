@@ -41,3 +41,7 @@
 
 <!-- custom -->
 <script src="{{asset('dashboard/js/custom.js')}}"></script>
+
+{{--    Tagify - tags input component Library--}}
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>

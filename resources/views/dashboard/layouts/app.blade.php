@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('dashboard.layouts.head')
+@yield('style')
 <body>
 
 <div class="wrapper">

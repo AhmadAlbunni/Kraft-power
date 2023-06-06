@@ -36,6 +36,8 @@ class StoreProductRequest extends FormRequest
             'attributes' => 'array',
             'attributes.*.name' => 'required|string',
             'attributes.*.value' => 'required|string',
+
+
         ];
     }
 }

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\StoreProductRequest;
-use App\Models\Attributes;
+
 use App\Models\Product;
 use App\Models\Category;
 
@@ -140,6 +139,7 @@ class ProductController extends Controller
     {
         $validated_data = $request->validated();
         try {
+            DB::beginTransaction();
             $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
             $object->sort_number = $object->id;
 
@@ -159,27 +159,43 @@ class ProductController extends Controller
                 }
             }
 
+
             if ($request->has('attributes')) {
                 foreach ($request->get('attributes') as $attribute) {
                     $object->attributes()->create([
                         'name' => $attribute['name'],
                         'value' => $attribute['value'],
                     ]);
+                }
+            }
 
+
+            if ($request->has('product_tags')) {
+                $tags = json_decode($request->get('product_tags'));
+                foreach ($tags as $tag) {
+                    $arrayTags[] = ['value' => $tag->value];
+                }
+                $arrayTags = collect($arrayTags)->toArray();
+                foreach ($arrayTags as $tag) {
+                    $object->tags()->create([
+                        'tag' => $tag['value']
+                    ]);
                 }
             }
 
 
             $object->save();
+            DB::commit();
 
-            $log_message = trans('products.create_log') . '#' . $object->id;
+//            $log_message = trans('products.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);
 
             return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);
         } catch (\Exception $ex) {
 
-            Log::error($ex->getMessage());
+//            Log::error($ex->getMessage());
             return redirect()->route($this->create_view)->with('error', $this->error_message);
+//            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
         }
 
 

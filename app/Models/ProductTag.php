@@ -11,6 +11,7 @@ class ProductTag extends Model
 
     protected $table = 'product_tags';
     public $timestamps = true;
+    protected $fillable = array('tag');
 
     public function product()
     {

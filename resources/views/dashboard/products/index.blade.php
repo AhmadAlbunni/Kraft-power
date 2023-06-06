@@ -37,7 +37,6 @@
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Status</th>
-                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -54,7 +53,6 @@
                                         <span
                                             class="@if($product->status == 'active')text-success @else text-danger @endif ">{{$product->status}} </span>
                                     </td>
-                                    <td class="tr-image"><img class="image-20" src="{{$product->image_url}}"></td>
                                     <td>
                                         <div class="row ">
                                             <a class="pe-2" href="{{route('dashboard.products.edit',$product->id)}}"> <i
