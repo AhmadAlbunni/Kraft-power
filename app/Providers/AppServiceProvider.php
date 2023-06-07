@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Product\Category;
+use Illuminate\Support\Facades\View;
+
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Retrieve the $category object
+
+        $categories = Category::where('status', '=', 'active')->get();
+
+        // Share the $category object with all views
+        View::share(compact('categories'));
     }
 }
