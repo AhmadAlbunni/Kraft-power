@@ -64,23 +64,18 @@
 
                                         <ul class="drop-down-multilevel effect-expand-top"
                                             style="transition: all 400ms ease 0s;">
-
-
-                                            <li ><a href="javascript:void(0)">Header<i
+                                            @foreach($categories as $category )
+                                            <li ><a href="javascript:void(0)">{{$category->name}}<i
                                                         class="ti-plus fa-indicator"></i>
                                                     <div class="mobileTriggerButton"></div>
                                                 </a>
                                                 <ul class="drop-down-multilevel effect-expand-top"
                                                     style="transition: all 400ms ease 0s;">
-
-                                                    <li><a href="header-default.html">123 </a></li>
-
+                                                    @foreach($category->subcategories as $sub )
+                                                    <li><a href="">{{$sub->name}} </a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
-                                            @foreach($categories as $category )
-
-                                                <li><a href="{{route('website.products')}}">{{$category->name}}
-                                                    </a></li>
                                             @endforeach
                                         </ul>
 
