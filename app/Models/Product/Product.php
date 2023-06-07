@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +22,7 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->hasMany(Attributes::class, 'product_id');
+        return $this->hasMany(ProductAttributes::class, 'product_id');
     }
 
     public function media()

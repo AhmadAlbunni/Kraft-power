@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\website\HomePageController;
-use App\Http\Controllers\website\AboutUsPageController;
-use App\Http\Controllers\website\SolutionsPageController;
-use App\Http\Controllers\website\ProductPageController;
-use App\Http\Controllers\website\NewsPageController;
 use App\Http\Controllers\dashboard\DashboardPageController;
-use App\Http\Controllers\dashboard\ProductController;
-use App\Http\Controllers\dashboard\CategoryController;
+use App\Http\Controllers\dashboard\Products\CategoryController;
+use App\Http\Controllers\dashboard\Products\ProductController;
+use App\Http\Controllers\website\AboutUsPageController;
+use App\Http\Controllers\website\HomePageController;
+use App\Http\Controllers\website\NewsPageController;
+use App\Http\Controllers\website\ProductPageController;
+use App\Http\Controllers\website\SolutionsPageController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

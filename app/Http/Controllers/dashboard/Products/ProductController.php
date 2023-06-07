@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\dashboard\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
-
-use App\Models\Product;
-use App\Models\Category;
-
-//use App\Models\UserActivity;
+use App\Models\Product\Category;
+use App\Models\Product\Product;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use DataTables;
+
+//use App\Models\UserActivity;
 
 
 class ProductController extends Controller

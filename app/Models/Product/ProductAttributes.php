@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attributes extends Model
+class ProductAttributes extends Model
 {
     use HasFactory;
-    protected $table = 'attributes';
+    protected $table = 'product_attributes';
     protected $primaryKey = 'id';
     public $timestamps = true;
 

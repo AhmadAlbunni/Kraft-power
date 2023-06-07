@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\dashboard;
+namespace App\Http\Controllers\dashboard\Products;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Models\Category;
+use App\Http\Requests\StoreProductCategoryRequest;
+use App\Models\Product\Category;
 use App\Models\UserActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -57,7 +57,7 @@ class CategoryController extends Controller
     }
 
 
-    public function store(StoreCategoryRequest $request)
+    public function store(StoreProductCategoryRequest $request)
     {
         $validated_data = $request->validated();
         try {
