@@ -6,7 +6,7 @@
                     <h6 class="text-white mb-30 mt-10 text-uppercase">Navigation</h6>
                     <ul>
                         <li><a href="{{route('website.home')}}">Home</a></li>
-                        <li><a href="{{route('website.products')}}">Products</a></li>
+                        <li><a href="{{ route('website.products', 'all') }}">Products</a></li>
                         <li><a href="{{route('website.solutions')}}">Solutions</a></li>
                         <li><a href="{{route('website.about')}}">About Us</a></li>
                         <li><a href="#">Contact Us</a></li>

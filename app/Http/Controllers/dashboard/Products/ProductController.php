@@ -51,27 +51,6 @@ class ProductController extends Controller
 
     }
 
-//    private function StoreValidationRules()
-//    {
-//        return [
-//            'category_id' => 'required|exists:categories,id',
-//            'name' => 'required|string|min:3|max:200',
-//            'sku' => 'required|string|min:3|max:30',
-//            'description' => 'required|string|min:3|max:1000',
-//            'prices' => 'nullable|numeric',
-//            'category_id' => 'nullable|exists:categories,id',
-//            'status' => 'required|in:active,inactive',
-//            'meta_title' => 'nullable|string',
-//            'meta_description' => 'nullable|string',
-//            'image' => 'required|array',
-//            'image.*' => 'required|image|mimes:jpg,jpeg,png',
-//            'attributes' => 'array',
-//            'attributes.*.name' => 'required|string',
-//            'attributes.*.value' => 'required|string',
-//
-//        ];
-//    }
-
     public function index()
     {
         $filter = request()->has('filter') ? request()->filter : 'all';
@@ -136,13 +115,15 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $validated_data = $request->validated();
+
         try {
+
             DB::beginTransaction();
-            $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
+            $object = $this->model_instance::create(Arr::except($validated_data, ['image', 'gallery']));
             $object->sort_number = $object->id;
 
-            if ($request->hasFile('image')) {
-                $productImages = $request->file('image');
+            if ($request->hasFile('gallery')) {
+                $productImages = $request->file('gallery');
                 if (is_array($productImages)) {
                     foreach ($productImages as $image) {
                         $img_file_path = Storage::disk('public_images')->put('products', $image);
@@ -155,6 +136,14 @@ class ProductController extends Controller
                         ]);
                     }
                 }
+            }
+
+            if ($request->has('image')) {
+                $img_file_path = Storage::disk('public_images')->put('products', $image);
+                $image_name = $image->getClientOriginalName();
+                $image_url = getMediaUrl($img_file_path);
+                $object->image_url = $image_url;
+                $object->image_name = $image_name;
             }
 
 
@@ -196,13 +185,11 @@ class ProductController extends Controller
 //            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
         }
 
-
     }
 
 
     public function show(string $id)
     {
-        // Find the product
         $product = Product::findOrFail($id);
 
         return view($this->show_view, compact('product'));

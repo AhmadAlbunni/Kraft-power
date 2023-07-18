@@ -25,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomePageController::class, 'index'])->name('website.home');
 Route::get('about', [AboutUsPageController::class, 'index'])->name('website.about');
 
-Route::get('/products', [ProductPageController::class, 'index'])->name('website.products');
+//Route::get('/products', [ProductPageController::class, 'index'])->name('website.products');
+Route::get('/products/{category}', [ProductPageController::class, 'index'])->name('website.products');
 Route::get('single', [ProductPageController::class, 'details']);
 
 Route::get('/solutions', [SolutionsPageController::class, 'index'])->name('website.solutions');
