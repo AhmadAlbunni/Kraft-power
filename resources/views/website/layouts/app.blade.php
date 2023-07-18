@@ -37,16 +37,16 @@
  jquery -->
 
 <!-- jquery -->
-<script src="js/jquery-3.6.0.min.js"></script>
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 
 <!-- plugins-jquery -->
-<script src="js/plugins-jquery.js"></script>
+<script src="{{asset('js/plugins-jquery.js')}}"></script>
 
 <!-- plugin_path -->
-<script>var plugin_path = 'js/';</script>
+<script>var plugin_path = '{{asset('js/')}}';</script>
 
 <!-- custom -->
-<script src="js/custom.js"></script>
+<script src="{{asset('js/custom.js')}}"></script>
 
 </body>
 </html>
