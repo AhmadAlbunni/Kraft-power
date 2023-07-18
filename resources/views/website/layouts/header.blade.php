@@ -65,6 +65,7 @@
                                         <ul class="drop-down-multilevel effect-expand-top"
                                             style="transition: all 400ms ease 0s;">
                                             @foreach($categories as $category )
+                                                @if($category->parent_id==0)
                                             <li ><a href="javascript:void(0)">{{$category->name}}<i
                                                         class="ti-plus fa-indicator"></i>
                                                     <div class="mobileTriggerButton"></div>
@@ -72,10 +73,11 @@
                                                 <ul class="drop-down-multilevel effect-expand-top"
                                                     style="transition: all 400ms ease 0s;">
                                                     @foreach($category->subcategories as $sub )
-                                                    <li><a href="">{{$sub->name}} </a></li>
+                                                        <li><a href="">{{$sub->name}} </a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
+                                                @endif
                                             @endforeach
                                         </ul>
 

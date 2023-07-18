@@ -20,7 +20,7 @@ class Category extends Model
     }
     public function subcategories()
     {
-        return $this->belongsToMany(Category::class, 'product_categories','parent_id');
+        return $this->hasMany(Category::class,'parent_id');
 
     }
 }
