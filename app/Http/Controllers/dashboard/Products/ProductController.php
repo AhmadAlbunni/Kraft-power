@@ -40,6 +40,7 @@ class ProductController extends Controller
         $this->show_view = 'dashboard.products.show';
         $this->edit_view = 'dashboard.products.edit';
 
+
         $this->success_message = 'Product created successfully';
         $this->error_message = "Failed to create product.";
         $this->delete_message = 'Product deleted successfully';
@@ -156,6 +157,7 @@ class ProductController extends Controller
                 }
             }
 
+
             if ($request->has('attributes')) {
                 foreach ($request->get('attributes') as $attribute) {
                     $object->attributes()->create([
@@ -164,6 +166,7 @@ class ProductController extends Controller
                     ]);
                 }
             }
+
 
             if ($request->has('product_tags')) {
                 $tags = json_decode($request->get('product_tags'));
@@ -178,6 +181,7 @@ class ProductController extends Controller
                 }
             }
 
+
             $object->save();
             DB::commit();
 
@@ -188,8 +192,8 @@ class ProductController extends Controller
         } catch (\Exception $ex) {
 
 //            Log::error($ex->getMessage());
-//            return redirect()->route($this->create_view)->with('error', $this->error_message);
-            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
+            return redirect()->route($this->create_view)->with('error', $this->error_message);
+//            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
         }
 
 

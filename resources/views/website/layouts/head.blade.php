@@ -5,10 +5,10 @@
     <meta name="description" content="Webster - Responsive Multi-purpose HTML5 Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Webster - Responsive Multi-purpose HTML5 Template</title>
+    <title>Kraft Power</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="shortcut icon" href="images/logo.png" />
 
     <!-- font -->
     <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">

@@ -9,7 +9,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img class="img-fluid" src="images/shop/banner/03.jpg" alt="slider">
+                <img class="img-fluid" src="images/banner/banner1.webp" alt="slider">
                 <div class="slider-content">
                     <div class="container">
                         <div class="row">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="img-fluid" src="images/shop/banner/04.jpg" alt="slider">
+                <img class="img-fluid" src="images/banner/banner2.webp" alt="slider">
                 <div class="slider-content">
                     <div class="container">
                         <div class="row">
