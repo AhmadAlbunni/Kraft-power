@@ -36,8 +36,74 @@
                     <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 mb-30">
+                            <div class="col-md-9 mb-30">
                                 <div class="card card-statistics h-100">
+                                    <div class="card-body">
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="name">Product Name</label>
+                                            <input required name="name" type="text" class="form-control"
+                                                   value="{{old('name')}}" id="name" placeholder="Enter Product Name">
+                                            @if($errors->has('name'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('name') }}
+                                                </div>
+                                            @endif
+                                            <div id="nameError" class="invalid-feedback"></div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="slug">Slug</label>
+                                            <input required name="slug" type="text" class="form-control"
+                                                   value="{{old('slug')}}" id="slug" placeholder="Enter Product slug">
+                                            @if($errors->has('slug'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('slug') }}
+                                                </div>
+                                            @endif
+                                            <div id="slugError" class="invalid-feedback"></div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="sku">Product Sku</label>
+                                            <input required name="sku" type="text" class="form-control"
+                                                   value="{{old('sku')}}" id="sku" placeholder="Ex.. Product-01">
+                                            @if($errors->has('sku'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('sku') }}
+                                                </div>
+                                            @endif
+                                            <div id="skuError" class="invalid-feedback"></div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="short_description">Product Short Description</label>
+                                            <textarea name="short_description" class="form-control" id="short_description"
+                                                      rows="2">{{old('short_description')}}</textarea>
+                                            @if($errors->has('short_description'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('short_description') }}
+                                                </div>
+                                            @endif
+                                            <div id="short_descriptionError" class="invalid-feedback"></div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="description">Product Description</label>
+                                            <textarea id="summernote" name="description" class="form-control" id="description"
+                                                      rows="2">{{old('description')}}</textarea>
+                                            @if($errors->has('description'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('description') }}
+                                                </div>
+                                            @endif
+                                            <div id="descriptionError" class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-30">
+                                <div class="card card-statistics h-30">
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label class="form-label" for="category_id">Category Name</label>
@@ -58,44 +124,9 @@
                                             @endif
                                             <div id="categoryError" class="invalid-feedback"></div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="sku">Product Sku</label>
-                                            <input required name="sku" type="text" class="form-control"
-                                                   value="{{old('sku')}}" id="sku" placeholder="Ex.. Product-01">
-                                            @if($errors->has('sku'))
-                                                <div class="alert alert-danger" role="alert">
-                                                    {{ $errors->first('sku') }}
-                                                </div>
-                                            @endif
-                                            <div id="skuError" class="invalid-feedback"></div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="name">Product Name</label>
-                                            <input required name="name" type="text" class="form-control"
-                                                   value="{{old('name')}}" id="name" placeholder="Enter Product Name">
-                                            @if($errors->has('name'))
-                                                <div class="alert alert-danger" role="alert">
-                                                    {{ $errors->first('name') }}
-                                                </div>
-                                            @endif
-                                            <div id="nameError" class="invalid-feedback"></div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="description">Product Description</label>
-                                            <textarea name="description" class="form-control" id="description"
-                                                      rows="2">{{old('description')}}</textarea>
-                                            @if($errors->has('description'))
-                                                <div class="alert alert-danger" role="alert">
-                                                    {{ $errors->first('description') }}
-                                                </div>
-                                            @endif
-                                            <div id="descriptionError" class="invalid-feedback"></div>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 mb-30">
-                                <div class="card card-statistics h-100">
+                                <div class="card card-statistics h-10">
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label class="form-label">Product State</label>
@@ -122,6 +153,40 @@
                                                 </div>
                                             @endif
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="card card-statistics h-10">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label d-block" for="image">Product Image</label>
+                                            <input name="image" type="file" value="{{old('image')}}"
+                                                   class="form-control" id="image">
+                                            @if($errors->has('image'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('image') }}
+                                                </div>
+                                            @endif
+                                            <div id="imageError" class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card card-statistics h-10">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label d-block" for="gallery">Product Gallery</label>
+                                            <input name="gallery[]" type="file" value="{{old('gallery')}}"
+                                                   class="form-control" id="gallery" multiple>
+                                            @if($errors->has('gallery'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('gallery') }}
+                                                </div>
+                                            @endif
+                                            <div id="galleryError" class="invalid-feedback"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card card-statistics h-20">
+                                    <div class="card-body">
                                         <div class="mb-3">
                                             <label class="form-label" for="meta_title">Meta Title</label>
                                             <input name="meta_title" type="text" class="form-control"
@@ -145,9 +210,10 @@
                                             @endif
                                             <div id="metaDescriptionError" class="invalid-feedback"></div>
                                         </div>
-
-
-
+                                    </div>
+                                </div>
+                                <div class="card card-statistics h-10">
+                                    <div class="card-body">
                                         <div class="mb-3">
                                             <label class="form-label" for="product_tags">Product Tags</label>
                                             <div class="tag-input">
@@ -160,22 +226,12 @@
                                             @endif
                                             <div id="productTagsError" class="invalid-feedback"></div>
                                         </div>
-
-
-                                        <div class="mb-3">
-                                            <label class="form-label d-block" for="image">Product Image</label>
-                                            <input name="image[]" type="file" value="{{old('image')}}"
-                                                   class="form-control" id="image" multiple>
-                                            @if($errors->has('image'))
-                                                <div class="alert alert-danger" role="alert">
-                                                    {{ $errors->first('image') }}
-                                                </div>
-                                            @endif
-                                            <div id="imageError" class="invalid-feedback"></div>
-                                        </div>
                                     </div>
                                 </div>
+
+
                             </div>
+
                             <div class="col-md-12 mb-30">
                                 <h4 class="form-label">Product Attributes</h4>
 
@@ -241,4 +297,5 @@
     </script>
 
 @endsection
+
 

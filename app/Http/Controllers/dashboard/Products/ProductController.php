@@ -136,13 +136,14 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $validated_data = $request->validated();
-        try {
+
+//        try {
             DB::beginTransaction();
-            $object = $this->model_instance::create(Arr::except($validated_data, ['image']));
+            $object = $this->model_instance::create(Arr::except($validated_data, ['image','gallery']));
             $object->sort_number = $object->id;
 
-            if ($request->hasFile('image')) {
-                $productImages = $request->file('image');
+            if ($request->hasFile('gallery')) {
+                $productImages = $request->file('gallery');
                 if (is_array($productImages)) {
                     foreach ($productImages as $image) {
                         $img_file_path = Storage::disk('public_images')->put('products', $image);
@@ -155,6 +156,15 @@ class ProductController extends Controller
                         ]);
                     }
                 }
+            }
+
+            if ($request->has('image')) {
+                $image = $request->get('image');
+                $img_file_path = Storage::disk('public_images')->put('products', $image);
+                $image_name = $image->getClientOriginalName();
+                $image_url = getMediaUrl($img_file_path);
+                $object->image_url = $image_url;
+                $object->image_name = $image_name;
             }
 
 
@@ -180,21 +190,23 @@ class ProductController extends Controller
                     ]);
                 }
             }
+        dd($object);
 
 
-            $object->save();
+
+        $object->save();
             DB::commit();
 
 //            $log_message = trans('products.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);
 
             return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);
-        } catch (\Exception $ex) {
+//        } catch (\Exception $ex) {
 
 //            Log::error($ex->getMessage());
-            return redirect()->route($this->create_view)->with('error', $this->error_message);
+//            return redirect()->route($this->create_view)->with('error', $this->error_message);
 //            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
-        }
+//        }
 
 
     }
