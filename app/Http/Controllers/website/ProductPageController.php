@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product\Category;
 
 class ProductPageController extends Controller
 {
@@ -11,6 +12,14 @@ class ProductPageController extends Controller
      */
     public function index()
     {
+        $filter = request()->has('filter') ? request()->filter : 'all';
+        if ($filter == "all") {
+            $products = $this->model_instance::all()->sortBy('id');
+        } else
+            $products = $this->model_instance::all()->sortBy('id');
+
+        $categories = Category::where('status', '=', 'active')->get();
+
         return view('website.products.index');
     }
 

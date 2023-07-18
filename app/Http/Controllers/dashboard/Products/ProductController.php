@@ -51,27 +51,6 @@ class ProductController extends Controller
 
     }
 
-//    private function StoreValidationRules()
-//    {
-//        return [
-//            'category_id' => 'required|exists:categories,id',
-//            'name' => 'required|string|min:3|max:200',
-//            'sku' => 'required|string|min:3|max:30',
-//            'description' => 'required|string|min:3|max:1000',
-//            'prices' => 'nullable|numeric',
-//            'category_id' => 'nullable|exists:categories,id',
-//            'status' => 'required|in:active,inactive',
-//            'meta_title' => 'nullable|string',
-//            'meta_description' => 'nullable|string',
-//            'image' => 'required|array',
-//            'image.*' => 'required|image|mimes:jpg,jpeg,png',
-//            'attributes' => 'array',
-//            'attributes.*.name' => 'required|string',
-//            'attributes.*.value' => 'required|string',
-//
-//        ];
-//    }
-
     public function index()
     {
         $filter = request()->has('filter') ? request()->filter : 'all';
@@ -137,9 +116,10 @@ class ProductController extends Controller
     {
         $validated_data = $request->validated();
 
-//        try {
+        try {
+
             DB::beginTransaction();
-            $object = $this->model_instance::create(Arr::except($validated_data, ['image','gallery']));
+            $object = $this->model_instance::create(Arr::except($validated_data, ['image', 'gallery']));
             $object->sort_number = $object->id;
 
             if ($request->hasFile('gallery')) {
@@ -159,7 +139,6 @@ class ProductController extends Controller
             }
 
             if ($request->has('image')) {
-                $image = $request->get('image');
                 $img_file_path = Storage::disk('public_images')->put('products', $image);
                 $image_name = $image->getClientOriginalName();
                 $image_url = getMediaUrl($img_file_path);
@@ -190,31 +169,27 @@ class ProductController extends Controller
                     ]);
                 }
             }
-        dd($object);
 
 
-
-        $object->save();
+            $object->save();
             DB::commit();
 
 //            $log_message = trans('products.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);
 
             return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);
-//        } catch (\Exception $ex) {
+        } catch (\Exception $ex) {
 
 //            Log::error($ex->getMessage());
-//            return redirect()->route($this->create_view)->with('error', $this->error_message);
+            return redirect()->route($this->create_view)->with('error', $this->error_message);
 //            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
-//        }
-
+        }
 
     }
 
 
     public function show(string $id)
     {
-        // Find the product
         $product = Product::findOrFail($id);
 
         return view($this->show_view, compact('product'));
