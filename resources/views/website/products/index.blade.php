@@ -26,36 +26,20 @@
                 <div class="col-lg-9 col-md-9">
                     <div class="row">
 
-
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="product mb-40">
-                                <div class="product-image">
-                                    <img class="img-fluid mx-auto" src="images/shop/01.jpg" alt="">
-                                    <div class="product-overlay">
-                                        <div class="add-to-cart">
-                                            <a href="shop-single.html">add to cart</a>
+                        @foreach($products as $product)
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                <div class="product mb-40">
+                                    <div class="product-image">
+                                        <img class="img-fluid mx-auto" src="{{asset($product->image_url)}}" alt="{{$product->image_name}}">
+                                    </div>
+                                    <div class="product-des">
+                                        <div class="product-title">
+                                            <a href="shop-single.html">{{$product->name}}</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-des">
-                                    <div class="product-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="product-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <div class="product-price">
-                                        <del>$24.99</del>
-                                        <ins>$12.49</ins>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3">
@@ -71,16 +55,9 @@
                             <h5 class="mb-20">categories</h5>
                             <div class="widget-link">
                                 <ul>
-                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> Hair
-                                            Accessories </a></li>
-                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> Makeup </a>
-                                    </li>
-                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> Nail Care
-                                            (10) </a></li>
-                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> Therapeutic
-                                            Supports </a></li>
-                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> Skin Care
-                                            (20) </a></li>
+                                    @foreach($categories as $category)
+                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> {{$category->name}} </a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

@@ -12,7 +12,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('sku')->unique();
-            $table->string('slug')->nullable();;
+            $table->string('slug')->nullable();
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
             $table->decimal('price', 8, 2)->nullable();

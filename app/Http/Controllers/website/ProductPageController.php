@@ -4,23 +4,25 @@ namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product\Category;
+use App\Models\Product\Product;
 
 class ProductPageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($category)
     {
-        $filter = request()->has('filter') ? request()->filter : 'all';
-        if ($filter == "all") {
-            $products = $this->model_instance::all()->sortBy('id');
-        } else
-            $products = $this->model_instance::all()->sortBy('id');
+        if ($categoryId = Category::where('name', $category)->value('id'))
+            $products = Product::where('status', '=', 'active')
+                ->where('category_id', $categoryId)
+                ->get();
+        else
+            $products = Product::where('status', '=', 'active')->get();
 
         $categories = Category::where('status', '=', 'active')->get();
 
-        return view('website.products.index');
+        return view('website.products.index', compact(['categories', 'products']));
     }
 
     /**
@@ -31,7 +33,6 @@ class ProductPageController extends Controller
     {
         return view('website.products.show');
     }
-
 
 
 }
