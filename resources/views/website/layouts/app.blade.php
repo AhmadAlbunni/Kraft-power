@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow: hidden;">
 
 @include('website.layouts.head')
 
@@ -45,7 +45,7 @@
 <script src="{{asset('js/plugins-jquery.js')}}"></script>
 
 <!-- plugin_path -->
-<script>var plugin_path = '{{asset('js/')}}';</script>
+<script>var plugin_path = '{{asset('js')}}'+'/';</script>
 
 <!-- custom -->
 <script src="{{asset('js/custom.js')}}"></script>
