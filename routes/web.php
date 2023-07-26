@@ -27,7 +27,7 @@ Route::get('about', [AboutUsPageController::class, 'index'])->name('website.abou
 
 //Route::get('/products', [ProductPageController::class, 'index'])->name('website.products');
 Route::get('/products/{category}', [ProductPageController::class, 'index'])->name('website.products');
-Route::get('single', [ProductPageController::class, 'details']);
+Route::get('/product/{id}', [ProductPageController::class, 'details'])->name('website.product.details');
 
 Route::get('/solutions', [SolutionsPageController::class, 'index'])->name('website.solutions');
 Route::get('/news', [NewsPageController::class, 'index'])->name('website.news');
@@ -56,5 +56,5 @@ Route::get('/index', [DashboardPageController::class, 'index'])->name('dashboard
     Route::put('/categories/update/{id}', [CategoryController::class, 'update'])->name('dashboard.categories.update');
     Route::delete('/categories/destroy/{id}', [CategoryController::class, 'destroy'])->name('dashboard.categories.destroy');
 
-
 });
+

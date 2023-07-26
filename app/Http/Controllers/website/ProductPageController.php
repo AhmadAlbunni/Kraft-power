@@ -13,25 +13,46 @@ class ProductPageController extends Controller
      */
     public function index($category)
     {
-        if ($categoryId = Category::where('name', $category)->value('id'))
-            $products = Product::where('status', '=', 'active')
-                ->where('category_id', $categoryId)
-                ->get();
-        else
-            $products = Product::where('status', '=', 'active')->get();
+        if ($category === 'all') {
+            $products = Product::where('status', 'active')->get();
+        } else {
+            $categoryId = Category::where('name', $category)->value('id');
 
-        $categories = Category::where('status', '=', 'active')->get();
+            if ($categoryId) {
+                $products = Product::where('status', 'active')
+                    ->where('category_id', $categoryId)
+                    ->get();
+            } else {
+                return redirect()->route('website.home');
+            }
+        }
 
-        return view('website.products.index', compact(['categories', 'products']));
+        $categories = Category::where('status', 'active')->get();
+        return view('website.products.index', compact('categories', 'products', 'category'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
 
-    public function details()
+    public function details($id)
     {
-        return view('website.products.show');
+        // Find the product by ID, ensuring it exists and is active
+        $product = Product::where('status', 'active')->findOrFail($id);
+
+// Find the category associated with the product, ensuring it exists and is active
+        $category = Category::where('status', 'active')->findOrFail($product->category_id);
+
+// Get all active categories
+        $categories = Category::where('status', 'active')->get();
+
+        $products = Product::where('status', 'active')
+            ->where('id', "!=", $id)
+            ->get();
+
+// Return the view with the data
+        return view('website.products.show', compact('categories', 'product', 'category','products'));
+
     }
 
 
