@@ -42,7 +42,7 @@ NOTE: This is main stylesheet of template, This file contains the styling for th
  ::  - Portfolio-item-2
  ::  - Portfolio single page
  :: Our Blog
- :: Our solutions
+ :: Our services
  :: Creativity
  :: Our History
  :: Our Service Objects
@@ -142,8 +142,8 @@ NOTE: This is main stylesheet of template, This file contains the styling for th
 .cart-item .cart-close a:hover { color: #323232; }
 
 /*mega-menu */
-.mega-menu .menu-logo { padding: 10px 0 25px; }
-.mega-menu .menu-logo img { height: 90px; }
+.mega-menu .menu-logo { padding: 25px 0 25px; }
+.mega-menu .menu-logo img { height: 40px; }
 .mega-menu .drop-down-multilevel.right-menu { right: 0px;  }
 .mega-menu > section.menu-list-items { padding: 0; }
 .mega-menu .menu-links > li > a { text-transform: uppercase; font-size: 14px; font-weight: 500; line-height: 20px; }
@@ -728,7 +728,7 @@ body.rtl .img-side img {right: auto; left: 0;}
 .isotope-filters  button.active, .isotope-filters  button:hover { background: #84ba3f; color: #fff; border-color: #84ba3f; }
 .isotope-filters  button+button { margin-left: 10px; }
 .isotope, .masonry { margin: 0 -15px 0 0; }
-.isotope.full-screen,
+.isotope.full-screen, 
 .masonry.full-screen { margin: 0; }
 .isotope.full-screen.columns-2 .grid-item,
 .isotope.full-screen.columns-3 .grid-item,
@@ -957,7 +957,7 @@ a.blog-btn i {  margin-left: 10px; -webkit-transition: all 0.3s ease-out 0s; -mo
  .blog-grid-2-sidebar .blog-entry .blog-entry-audio { padding: 96px 20px; }
 
 /*************************************
-      our solutions
+      our services
 **************************************/
 .service-image-holder { position: relative; height: 496px; }
 .service-image-holder .section-title-2 { display: inline-block; left: 0; position: absolute; text-align: center; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); width: 100%; }

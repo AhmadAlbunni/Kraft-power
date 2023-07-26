@@ -1,7 +1,8 @@
 @extends('website.layouts.app')
 @section('content')
 
-    <section class="page-title bg-overlay-black-60 jarallax" data-speed="0.6" data-img-src="images/bg/02.jpg">
+    <section class="page-title bg-overlay-black-60 jarallax" data-speed="0.6"
+             data-img-src="{{asset('images/bg/02.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -10,10 +11,12 @@
                         <p>We know the secret of your success</p>
                     </div>
                     <ul class="page-breadcrumb">
-                        <li><a href="#"><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i>
+                        <li><a href="{{url('/')}}"><i class="fa fa-home"></i> Home</a> <i
+                                class="fa fa-angle-double-right"></i>
                         </li>
-                        <li><a href="#">shop</a> <i class="fa fa-angle-double-right"></i></li>
-                        <li><span>shop listing</span></li>
+                        <li><a href="{{route('website.products', 'all')}}">Products</a> <i
+                                class="fa fa-angle-double-right"></i></li>
+                        <li><span>{{$category}}</span></li>
                     </ul>
                 </div>
             </div>
@@ -30,11 +33,12 @@
                             <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="product mb-40">
                                     <div class="product-image">
-                                        <img class="img-fluid mx-auto" src="{{asset($product->image_url)}}" alt="{{$product->image_name}}">
+                                        <img class="img-fluid mx-auto" src="{{asset($product->image_url)}}"
+                                             alt="{{$product->image_name}}">
                                     </div>
                                     <div class="product-des">
                                         <div class="product-title">
-                                            <a href="shop-single.html">{{$product->name}}</a>
+                                            <a href="{{route('website.product.details',$product->id)}}">{{$product->name}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -56,227 +60,10 @@
                             <div class="widget-link">
                                 <ul>
                                     @foreach($categories as $category)
-                                    <li><a href="shop-single.html"> <i class="fa fa-angle-double-right"></i> {{$category->name}} </a></li>
+                                        <li><a href="{{route('website.products', $category->slug)}}"> <i
+                                                    class="fa fa-angle-double-right"></i> {{$category->name}} </a></li>
                                     @endforeach
                                 </ul>
-                            </div>
-                        </div>
-                        <div class="sidebar-widget mb-40">
-                            <h5 class="mb-20">Recent items</h5>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/01.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/02.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/03.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidebar-widget mb-40">
-                            <h5 class="mb-20">Recently viewed items</h5>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/04.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/05.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/06.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/07.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sidebar-widget mb-0">
-                            <h5 class="mb-20">Popular items</h5>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/08.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/09.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/10.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="recent-item mb-0 clearfix">
-                                <div class="recent-image">
-                                    <a href="shop-single.html"><img class="img-fluid" src="images/shop/11.jpg"
-                                                                    alt=""></a>
-                                </div>
-                                <div class="recent-info">
-                                    <div class="recent-title">
-                                        <a href="shop-single.html">Product name</a>
-                                    </div>
-                                    <div class="recent-meta">
-                                        <ul class="list-style-unstyled">
-                                            <li class="color">$29.99 /</li>
-                                            <li><i class="icon-star3"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-                                                    class="fa fa-star-half-o"></i><i class="fa fa-star-o"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -306,3 +93,5 @@
     </section>
 
 @endsection
+
+

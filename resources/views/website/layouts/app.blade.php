@@ -11,7 +11,7 @@
      preloader -->
 
     <div id="pre-loader">
-        <img src="images/pre-loader/loader-01.svg" alt="">
+        <img src="{{asset('images/pre-loader/loader-01.svg')}}" alt="">
     </div>
 
     <!--=================================
@@ -37,6 +37,8 @@
  jquery -->
 
 <!-- jquery -->
+@yield('scripts')
+
 <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 
 <!-- plugins-jquery -->
