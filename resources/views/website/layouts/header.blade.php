@@ -56,7 +56,7 @@
                                         </a>
                                     </li>
 
-                                    <li class="hoverTrigger active"><a href="{{ route('website.products', 'all') }}"> Products <i
+                                    <li class="hoverTrigger"><a href="{{ route('website.products', 'all') }}"> Products <i
                                                 class="fa fa-angle-down fa-indicator"></i>
                                             <div class="mobileTriggerButton"></div>
                                         </a>

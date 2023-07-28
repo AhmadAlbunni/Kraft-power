@@ -37,9 +37,9 @@
 
                                 </div>
                                 <div class="slider slider-nav">
-                                    {{--                                    @foreach($product->media as $media)--}}
-                                    {{--                                        <img class="img-fluid" src="{{$media->image_url}}" alt="">--}}
-                                    {{--                                    @endforeach--}}
+                                    @foreach($product->media as $media)
+                                        <img class="img-fluid" src="{{$media->image_url}}" alt="">
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -82,15 +82,15 @@
                                     <li class="nav-item">
                                         <a class="nav-link active show" id="description-tab" data-bs-toggle="tab"
                                            href="#description" role="tab" aria-controls="description"
-                                           aria-selected="true">Home</a>
+                                           aria-selected="true">Description</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="additional-tab" data-bs-toggle="tab" href="#additional"
-                                           role="tab" aria-controls="additional" aria-selected="false">Profile </a>
+                                           role="tab" aria-controls="additional" aria-selected="false">Specifications </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#reviews"
-                                           role="tab" aria-controls="reviews" aria-selected="false">Portfolio </a>
+                                           role="tab" aria-controls="reviews" aria-selected="false">Files </a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
@@ -122,7 +122,6 @@
                         </div>
 
 
-
                         <div class="col-lg-12 col-md-12">
                             <div class="title mt-30 mb-30">
                                 <h6>Related Products</h6>
@@ -133,307 +132,25 @@
 
 
                                 <div class="owl-stage-outer">
-                                    <div class="owl-stage" style="transform: translate3d(-883px, 0px, 0px); transition: all 0s ease 0s; width: 2945px;">
+                                    <div class="owl-stage"
+                                         style="transform: translate3d(-883px, 0px, 0px); transition: all 0s ease 0s; width: 2945px;">
+                                        @foreach($relatedProducts as $product)
                                         <div class="owl-item cloned" style="width: 264.5px; margin-right: 30px;">
                                             <div class="item">
                                                 <div class="product">
                                                     <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
+                                                        <img class="img-fluid mx-auto"
+                                                             src="{{$product->image_url}}" alt="{{$product->image_name}}">
                                                     </div>
                                                     <div class="product-des">
                                                         <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
+                                                            <a href="{{route('website.product.details',$product->id)}}">{{$product->name}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="owl-item cloned" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item cloned" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item active" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item active" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item active" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item cloned" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item cloned" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/02.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="owl-item cloned" style="width: 264.5px; margin-right: 30px;">
-                                            <div class="item">
-                                                <div class="product">
-                                                    <div class="product-image">
-                                                        <img class="img-fluid mx-auto" src="{{asset('images/shop/03.jpg')}}" alt="">
-                                                        <div class="product-overlay">
-                                                            <div class="add-to-cart">
-                                                                <a href="shop-single.html">add to cart</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-des">
-                                                        <div class="product-title">
-                                                            <a href="shop-single.html">Product name</a>
-                                                        </div>
-                                                        <div class="product-rating">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                        </div>
-                                                        <div class="product-price">
-                                                            <del>$24.99</del>
-                                                            <ins>$12.49</ins>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="owl-nav">

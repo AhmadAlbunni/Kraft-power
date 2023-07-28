@@ -57,9 +57,9 @@
                                     </td>
                                     <td>
                                         <div class="row ">
-                                            <a class="pe-2" href="{{route('dashboard.products.edit',$product->id)}}"> <i
+                                            <a class="pe-2" href="{{route('dashboard.product.edit',$product->id)}}"> <i
                                                     class="fa fa-pencil"></i></a>
-                                            <form method="POST" action="{{route('dashboard.products.destroy',$product->id)}}">
+                                            <form method="POST" action="{{route('dashboard.product.destroy',$product->id)}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button  class="fa fa-trash-o text-danger" onclick="return confirm('Are you sure you want to delete this {{$product->name}} ')">

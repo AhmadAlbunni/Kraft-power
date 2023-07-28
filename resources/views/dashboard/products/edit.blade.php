@@ -27,7 +27,7 @@
             @endif
             <div class="card card-statistics mb-30">
                 <div class="card-body">
-                    <form action="{{route('dashboard.product.update',$product->id)}} " method="POST"
+                    <form action="# " method="POST"
                           enctype="multipart/form-data">
                         @method('PUT')
                         @csrf

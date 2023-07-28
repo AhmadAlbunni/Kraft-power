@@ -32,7 +32,7 @@
                 </a>
                 <ul id="products-menu" class="collapse" data-bs-parent="#sidebarnav">
                     <li><a href="{{route('dashboard.products.index')}}">Brows All Products</a></li>
-                    <li><a href="{{route('dashboard.products.create')}}">Add New Product </a></li>
+                    <li><a href="{{route('dashboard.product.create')}}">Add New Product </a></li>
                 </ul>
             </li>
 

@@ -21,8 +21,8 @@ class ProductController extends Controller
 
     private $index_view;
     private $create_view;
-    private $edit_view;
     private $show_view;
+    private $edit_view;
 //    private $edit_variation_view;
 
 //    private $index_route;
@@ -198,10 +198,8 @@ class ProductController extends Controller
 
     public function edit(string $productId)
     {
-        // Find the product
         $product = Product::findOrFail($productId);
 
-        // Fetch categories for dropdown
         $categories = Category::all();
 
         return view($this->edit_view, compact('product', 'categories'));

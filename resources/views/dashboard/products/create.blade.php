@@ -33,7 +33,7 @@
             @endif
             <div class="card card-statistics mb-30">
                 <div class="card-body">
-                    <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-9 mb-30">

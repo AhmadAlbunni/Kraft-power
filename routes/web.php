@@ -43,11 +43,11 @@ Route::get('/index', [DashboardPageController::class, 'index'])->name('dashboard
 
     Route::get('/products/index', [ProductController::class, 'index'])->name('dashboard.products.index');
     Route::get('/products/data', [ProductController::class, 'getProductsData'])->name('dashboard.products.data');
-    Route::get('/products/create', [ProductController::class, 'create'])->name('dashboard.products.create');
-    Route::post('/product/store', [ProductController::class, 'store'])->name('dashboard.products.store');
-    Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('dashboard.products.edit');
-    Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('dashboard.products.update');
-    Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('dashboard.products.destroy');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('dashboard.product.create');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('dashboard.product.store');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('dashboard.product.edit');
+    Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('dashboard.products.update');
+    Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('dashboard.product.destroy');
 
     Route::get('/categories/index', [CategoryController::class, 'index'])->name('dashboard.categories.index');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('dashboard.categories.create');

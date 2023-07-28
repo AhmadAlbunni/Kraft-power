@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-title-name">
-                        <h1>shop listing</h1>
+                        <h1>{{$category}}</h1>
                         <p>We know the secret of your success</p>
                     </div>
                     <ul class="page-breadcrumb">
@@ -33,6 +33,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="product mb-40">
                                     <div class="product-image">
+
                                         <img class="img-fluid mx-auto" src="{{asset($product->image_url)}}"
                                              alt="{{$product->image_name}}">
                                     </div>

@@ -143,7 +143,7 @@ NOTE: This is main stylesheet of template, This file contains the styling for th
 
 /*mega-menu */
 .mega-menu .menu-logo { padding: 25px 0 25px; }
-.mega-menu .menu-logo img { height: 40px; }
+.mega-menu .menu-logo img { height: 70px; }
 .mega-menu .drop-down-multilevel.right-menu { right: 0px;  }
 .mega-menu > section.menu-list-items { padding: 0; }
 .mega-menu .menu-links > li > a { text-transform: uppercase; font-size: 14px; font-weight: 500; line-height: 20px; }
@@ -728,7 +728,7 @@ body.rtl .img-side img {right: auto; left: 0;}
 .isotope-filters  button.active, .isotope-filters  button:hover { background: #84ba3f; color: #fff; border-color: #84ba3f; }
 .isotope-filters  button+button { margin-left: 10px; }
 .isotope, .masonry { margin: 0 -15px 0 0; }
-.isotope.full-screen, 
+.isotope.full-screen,
 .masonry.full-screen { margin: 0; }
 .isotope.full-screen.columns-2 .grid-item,
 .isotope.full-screen.columns-3 .grid-item,
