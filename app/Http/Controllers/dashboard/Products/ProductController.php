@@ -42,6 +42,8 @@ class ProductController extends Controller
         $this->edit_view = 'dashboard.products.edit';
         $this->update_view = 'dashboard.product.edit';
 
+        $this->create_route='dashboard.product.create';
+
 
         $this->success_message = 'Product created successfully';
         $this->error_message = "Failed to create product.";
@@ -181,11 +183,11 @@ class ProductController extends Controller
 //            $log_message = trans('products.create_log') . '#' . $object->id;
 //            UserActivity::logActivity($log_message);
 
-            return redirect()->route($this->create_view, $object->id)->with('success', $this->success_message);
+            return redirect()->route($this->create_route, $object->id)->with('success', $this->success_message);
         } catch (\Exception $ex) {
 
 //            Log::error($ex->getMessage());
-            return redirect()->route($this->create_view)->with('error', $this->error_message);
+            return redirect()->route($this->create_route)->with('error', $this->error_message);
 //            return redirect()->route($this->create_view)->with('error', $ex->getMessage());
         }
 
@@ -212,15 +214,14 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, $id)
     {
+
         $validated_data = $request->validated();
 
-        try {
-            DB::beginTransaction();
+           // DB::beginTransaction();
             $object = $this->model_instance::findOrFail($id);
 
             // Update the product details except for the images and gallery
             $object->update(Arr::except($validated_data, ['image', 'gallery']));
-
             // Update the images
             if ($request->hasFile('gallery')) {
                 $productImages = $request->file('gallery');
@@ -281,17 +282,14 @@ class ProductController extends Controller
             }
 
             $object->save();
-            DB::commit();
+            //DB::commit();
 
             // You can uncomment this if you have UserActivity implemented
             // $log_message = trans('products.update_log') . '#' . $object->id;
             // UserActivity::logActivity($log_message);
 
             return redirect()->route($this->update_view, $object->id)->with('success', $this->update_success_message);
-        } catch (\Exception $ex) {
-            // Log::error($ex->getMessage());
-            return redirect()->route($this->update_view)->with('error', $this->update_error_message);
-        }
+
     }
 
 

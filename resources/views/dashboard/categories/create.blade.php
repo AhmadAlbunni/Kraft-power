@@ -62,6 +62,17 @@
                                             @endif
                                         </div>
                                         <div class="mb-3">
+                                            <label class="form-label" for="exampleInputEmail1">Category Slug</label>
+                                            <input required name="slug" type="text" class="form-control"
+                                                   aria-describedby="emailHelp"
+                                                   placeholder="Ex.. Hybrid Inverters " value="{{old('slug')}}" >
+                                            @if($errors->has('slug'))
+                                                <div class="alert alert-danger" role="alert">
+                                                    {{ $errors->first('slug') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="mb-3">
                                             <label class="form-label" for="exampleFormControlTextarea1">Category
                                                 Description</label>
                                             <textarea name="description" class="form-control" id="description"

@@ -66,14 +66,14 @@
                                             style="transition: all 400ms ease 0s;">
                                             @foreach($categories as $category )
                                                 @if($category->parent_id==0)
-                                                    <li><a href="{{ route('website.products', $category->slug) }}">{{$category->name}}<i
+                                                    <li><a href="{{ route('website.products',$category->slug) }}">{{$category->name}}<i
                                                                 class="ti-plus fa-indicator"></i>
                                                             <div class="mobileTriggerButton"></div>
                                                         </a>
                                                         <ul class="drop-down-multilevel effect-expand-top"
                                                             style="transition: all 400ms ease 0s;">
                                                             @foreach($category->subcategories as $sub )
-                                                                <li><a href="{{route('website.products',  $sub->slug)}}">{{$sub->name}} </a></li>
+                                                                <li><a href="{{route('website.products',$sub->slug)}}">{{$sub->name}} </a></li>
                                                             @endforeach
                                                         </ul>
                                                     </li>

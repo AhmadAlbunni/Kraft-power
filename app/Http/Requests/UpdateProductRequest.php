@@ -39,8 +39,8 @@ class UpdateProductRequest extends FormRequest
 
             'product_tags'=>'nullable|string',
 
-            'gallery' => 'array',
-            'gallery.*' => 'image|mimes:jpg,jpeg,png,webp',
+           //'gallery' => 'nullable|array',
+           'gallery.*' => 'image|mimes:jpg,jpeg,png,webp',
 
             'attributes' => 'array',
             'attributes.*.name' => 'required|string',

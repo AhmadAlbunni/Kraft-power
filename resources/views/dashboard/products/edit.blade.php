@@ -203,7 +203,7 @@
                                                         <img src="{{$img->image_url}}" alt="{{$img->image_name}}" class="img-fluid-gallery">
                                                 @endforeach
                                             </div>
-                                            <input name="gallery[]" type="file" value="{{old('gallery')}}" class="form-control" id="gallery" multiple>
+                                            <input name="gallery[]" type="file"  class="form-control" id="gallery" multiple>
 
                                             @if($errors->has('gallery'))
                                                 <div class="alert alert-danger" role="alert">
