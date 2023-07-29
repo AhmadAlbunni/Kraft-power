@@ -141,8 +141,8 @@ class ProductController extends Controller
                     }
                 }
             }
-
             if ($request->has('image')) {
+                $image=$request->file('image');
                 $img_file_path = Storage::disk('public_images')->put('products', $image);
                 $image_name = $image->getClientOriginalName();
                 $image_url = getMediaUrl($img_file_path);
