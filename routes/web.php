@@ -46,7 +46,7 @@ Route::get('/index', [DashboardPageController::class, 'index'])->name('dashboard
     Route::get('/products/create', [ProductController::class, 'create'])->name('dashboard.product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('dashboard.product.store');
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('dashboard.product.edit');
-    Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('dashboard.products.update');
+    Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('dashboard.product.update');
     Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('dashboard.product.destroy');
 
     Route::get('/categories/index', [CategoryController::class, 'index'])->name('dashboard.categories.index');

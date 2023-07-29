@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
 use DataTables;
@@ -39,15 +40,18 @@ class ProductController extends Controller
         $this->create_view = 'dashboard.products.create';
         $this->show_view = 'dashboard.products.show';
         $this->edit_view = 'dashboard.products.edit';
+        $this->update_view = 'dashboard.product.edit';
 
 
         $this->success_message = 'Product created successfully';
         $this->error_message = "Failed to create product.";
+
+        $this->update_success_message = 'Product updated successfully!';
+        $this->update_error_message = "Unfortunately, the product could not be updated";
+
         $this->delete_message = 'Product deleted successfully';
         $this->error = 'Something went Wrong';
-        $this->update_success_message = 'Product Updated successfully';
 
-        $this->update_error_message = "Product Couldn't Been Updated";
 
     }
 
@@ -206,73 +210,90 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $productId)
+    public function update(UpdateProductRequest $request, $id)
     {
+        $validated_data = $request->validated();
+
         try {
-            $request->validate([
-                'name' => 'required|string',
-                'sku' => 'required|string',
-                'description' => 'nullable|string',
-                'price' => 'required|numeric',
-                'category_id' => 'required|exists:categories,id',
-                'status' => 'nullable|in:active,inactive',
-                'sort_number' => 'nullable|integer',
-                'meta_title' => 'nullable|string',
-                'meta_description' => 'nullable|string',
-                'attributes.*.name' => 'required|string',
-                'attributes.*.value' => 'required|string',
-                'images.*' => 'nullable|image|max:2048',
-            ]);
-
             DB::beginTransaction();
+            $object = $this->model_instance::findOrFail($id);
 
-            // Find the product
-            $product = Product::findOrFail($productId);
-            $product->name = $request->input('name');
-            $product->sku = $request->input('sku');
-            $product->description = $request->input('description');
-            $product->price = $request->input('price');
-            $product->category_id = $request->input('category_id');
-            $product->status = $request->input('status', 'active');
-            $product->sort_number = $request->input('sort_number');
-            $product->meta_title = $request->input('meta_title');
-            $product->meta_description = $request->input('meta_description');
-            $product->save();
+            // Update the product details except for the images and gallery
+            $object->update(Arr::except($validated_data, ['image', 'gallery']));
 
-            // Remove existing attributes and re-add them
-            $product->attributes()->delete();
-            $attributes = $request->input('attributes', []);
-            foreach ($attributes as $attribute) {
-                $product->attributes()->create([
-                    'name' => $attribute['name'],
-                    'value' => $attribute['value'],
-                ]);
+            // Update the images
+            if ($request->hasFile('gallery')) {
+                $productImages = $request->file('gallery');
+                if (is_array($productImages)) {
+                    // Remove old gallery images
+                    $object->media()->delete();
+
+                    foreach ($productImages as $image) {
+                        $img_file_path = Storage::disk('public_images')->put('products', $image);
+                        $image_name = $image->getClientOriginalName();
+                        $image_url = getMediaUrl($img_file_path);
+
+                        $object->media()->create([
+                            'image_url' => $image_url,
+                            'image_name' => $image_name,
+                        ]);
+                    }
+                }
             }
 
-            // Upload and associate images with the product
-            if ($request->hasFile('images')) {
-                $images = $request->file('images');
-                foreach ($images as $image) {
-                    $fileName = $image->getClientOriginalName();
-                    $fileExtension = $image->getClientOriginalExtension();
-                    $storedFileName = Str::random(20) . '.' . $fileExtension;
-                    $path = $image->storeAs('product_images', $storedFileName);
+            // Update the main image
+            if ($request->hasFile('image')) {
+                // Delete the old main image
+                Storage::disk('public_images')->delete($object->image_url);
 
-                    $product->images()->create([
-                        'file_name' => $fileName,
-                        'file_path' => $path,
+                $img_file_path = Storage::disk('public_images')->put('products', $image);
+                $image_name = $image->getClientOriginalName();
+                $image_url = getMediaUrl($img_file_path);
+
+                $object->image_url = $image_url;
+                $object->image_name = $image_name;
+            }
+
+            // Update the attributes
+            if ($request->has('attributes')) {
+                $object->attributes()->delete();
+                foreach ($request->get('attributes') as $attribute) {
+                    $object->attributes()->create([
+                        'name' => $attribute['name'],
+                        'value' => $attribute['value'],
                     ]);
                 }
             }
 
+            // Update the product tags
+            if ($request->has('product_tags')) {
+                $object->tags()->delete();
+                $tags = json_decode($request->get('product_tags'));
+                foreach ($tags as $tag) {
+                    $arrayTags[] = ['value' => $tag->value];
+                }
+                $arrayTags = collect($arrayTags)->toArray();
+                foreach ($arrayTags as $tag) {
+                    $object->tags()->create([
+                        'tag' => $tag['value']
+                    ]);
+                }
+            }
+
+            $object->save();
             DB::commit();
 
-            return response()->json(['message' => 'Product updated successfully'], 200);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['error' => 'Failed to update product.'], 500);
+            // You can uncomment this if you have UserActivity implemented
+            // $log_message = trans('products.update_log') . '#' . $object->id;
+            // UserActivity::logActivity($log_message);
+
+            return redirect()->route($this->update_view, $object->id)->with('success', $this->update_success_message);
+        } catch (\Exception $ex) {
+            // Log::error($ex->getMessage());
+            return redirect()->route($this->update_view)->with('error', $this->update_error_message);
         }
     }
+
 
 
     public function destroy($productId)
