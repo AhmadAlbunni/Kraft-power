@@ -48,6 +48,7 @@ Route::get('/index', [DashboardPageController::class, 'index'])->name('dashboard
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('dashboard.product.edit');
     Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('dashboard.product.update');
     Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('dashboard.product.destroy');
+    Route::delete('products/media/delete/{id}', [ProductController::class, 'deleteImage'])->name('dashboard.product.deleteImage');
 
     Route::get('/categories/index', [CategoryController::class, 'index'])->name('dashboard.categories.index');
     Route::get('/categories/create', [CategoryController::class, 'create'])->name('dashboard.categories.create');

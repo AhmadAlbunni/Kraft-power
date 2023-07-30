@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
+use App\Models\Product\ProductMedia;
 use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -139,6 +140,7 @@ class ProductController extends Controller
                         $object->media()->create([
                             'image_url' => $image_url,
                             'image_name' => $image_name,
+                            'is_featured' => 'false',
                         ]);
                     }
                 }
@@ -148,8 +150,11 @@ class ProductController extends Controller
                 $img_file_path = Storage::disk('public_images')->put('products', $image);
                 $image_name = $image->getClientOriginalName();
                 $image_url = getMediaUrl($img_file_path);
-                $object->image_url = $image_url;
-                $object->image_name = $image_name;
+                $object->media()->create([
+                    'image_url' => $image_url,
+                    'image_name' => $image_name,
+                    'is_featured' => 'true',
+                ]);
             }
 
 
@@ -320,4 +325,16 @@ class ProductController extends Controller
         }
     }
 
+    public function deleteImage($mediaId){
+
+        $mediaItem = ProductMedia::findOrFail($mediaId);
+        //dd($mediaItem);
+            $mediaItem->image_name = 'no image';
+            $mediaItem->image_url = asset('/images/noimage.jpg');
+            $mediaItem->save();
+
+        return response()->json([
+            'success' => 'Image deleted successfully!',
+        ]);
+    }
 }

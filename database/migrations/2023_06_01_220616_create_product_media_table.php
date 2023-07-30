@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('image_name');
             $table->string('image_url');
+            $table->enum('is_featured',['true','false'])->default('false');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->bigInteger('sort_number')->nullable();
             $table->timestamps();

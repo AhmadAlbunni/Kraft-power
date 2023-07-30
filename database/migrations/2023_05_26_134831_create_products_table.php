@@ -19,8 +19,6 @@ class CreateProductsTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->index('category_id');
             $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
-            $table->string('image_name')->nullable();
-            $table->string('image_url')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->bigInteger('sort_number')->nullable()->default('0');;
             $table->text('meta_title')->nullable();

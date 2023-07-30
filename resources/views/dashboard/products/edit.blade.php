@@ -181,11 +181,18 @@
                                             <label class="form-label d-block" for="image">Product Image</label>
 
                                             <label for="new-image">
-                                                <img src="{{$product->image_url}}" alt="{{$product->image_name}}" class="img-fluid hoverable" id="image">
-                                            </label>
-                                            <input type="file" name="image" id="new-image" class="form-control" onchange="updateImage()" style="display: none;">
+                                                @foreach($product->media as $img)
+                                                    @if($img->is_featured=='true')
+                                                    <img src="{{$img->image_url}}" alt="{{$img->image_name,$img->id}}" class="img-fluid-gallery m-1">
+                                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                        <button type="button" onclick="confirm('Are you sure you want to delete this image : {{$img->image_name}} ?') " class="deleteRecord btn btn-danger" data-id="{{ $img->id }}" ><i class=" fa fa-trash"></i></button>
+                                                    @endif
+                                                @endforeach                                            </label>
+                                            <div class="row">
+                                                <input type="file"  name="image" id="new-image" class="form-control">
 
-                                            @if($errors->has('image'))
+                                            </div>
+                                                @if($errors->has('image'))
                                                 <div class="alert alert-danger" role="alert">
                                                     {{ $errors->first('image') }}
                                                 </div>
@@ -200,7 +207,10 @@
                                             <label class="form-label d-block" for="gallery">Product Gallery</label>
                                             <div id="imageContainer">
                                                 @foreach($product->media as $img)
-                                                        <img src="{{$img->image_url}}" alt="{{$img->image_name}}" class="img-fluid-gallery">
+                                                        <img src="{{$img->image_url}}" alt="{{$img->image_name}}" class="img-fluid-gallery m-1">
+                                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                    <button type="button" onclick="confirm('Are you sure you want to delete this image : {{$img->image_name}} ?') " class="deleteRecord btn btn-danger" data-id="{{ $img->id }}" ><i class=" fa fa-trash"></i></button>
+
                                                 @endforeach
                                             </div>
                                             <input name="gallery[]" type="file"  class="form-control" id="gallery" multiple>
@@ -370,6 +380,26 @@
                 imageContainer.appendChild(img);
             }
         });
+    </script>
+    <script>
+        $(".deleteRecord").click(function(){
+            var id = $(this).data("id");
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax(
+                {
+                    url: "http://127.0.0.1:8000/dashboard/products/media/delete/"+id,
+                    type: 'DELETE',
+                    data: {
+                        "id": id,
+                        "_token": token,
+                    },
+                    success: function (){
+                        console.log("Image with ID: "+ id +" Deleted ");
+                    }
+                });
+
+        })
     </script>
 
 @endsection

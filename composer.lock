@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "121ea3a2fffe49b3ef9aa4d064b28c19",
+    "content-hash": "6f7cc364e61681da08ed2b24fbe893a0",
     "packages": [
         {
             "name": "brick/math",
@@ -5505,6 +5505,67 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "zanysoft/laravel-responsive-filemanager",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zanysoft/laravel-responsive-filemanager.git",
+                "reference": "24bdbbd31b2d46427cd4da2b816394d1f3bb9bd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zanysoft/laravel-responsive-filemanager/zipball/24bdbbd31b2d46427cd4da2b816394d1f3bb9bd2",
+                "reference": "24bdbbd31b2d46427cd4da2b816394d1f3bb9bd2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "illuminate/http": "^8.0|^9.0|^10.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ZanySoft\\ResponsiveFileManager\\FileManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ZanySoft\\FtpClient\\": "src/FtpClient/",
+                    "ZanySoft\\ResponsiveFileManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mubashar Ahmad",
+                    "email": "info@zanysoft.net"
+                }
+            ],
+            "description": "Integrate Alberto Peripolli's Responsive File Manager with Laravel",
+            "keywords": [
+                "CKEditor",
+                "filemanager",
+                "laravel",
+                "laravel-filemanager",
+                "responsive",
+                "responsive-filemanager",
+                "tinymce",
+                "tinymce-filemanager"
+            ],
+            "support": {
+                "issues": "https://github.com/zanysoft/laravel-responsive-filemanager/issues",
+                "source": "https://github.com/zanysoft/laravel-responsive-filemanager/tree/2.0.6"
+            },
+            "time": "2023-05-08T12:17:40+00:00"
         }
     ],
     "packages-dev": [
