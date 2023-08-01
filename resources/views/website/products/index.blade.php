@@ -33,9 +33,12 @@
                             <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="product mb-40">
                                     <div class="product-image">
-
-                                        <img class="img-fluid mx-auto" src="{{asset($product->image_url)}}"
-                                             alt="{{$product->image_name}}">
+                                        @foreach($product->media as $image)
+                                            @if($image->is_featured =='true')
+                                        <img class="img-fluid mx-auto" src="{{$image->image_url}}"
+                                             alt="{{$image->image_name}}">
+                                            @endif
+                                        @endforeach
                                     </div>
                                     <div class="product-des">
                                         <div class="product-title">

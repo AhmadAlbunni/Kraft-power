@@ -207,10 +207,11 @@
                                             <label class="form-label d-block" for="gallery">Product Gallery</label>
                                             <div id="imageContainer">
                                                 @foreach($product->media as $img)
+                                                    @if($img->is_featured =='false')
                                                         <img src="{{$img->image_url}}" alt="{{$img->image_name}}" class="img-fluid-gallery m-1">
                                                     <meta name="csrf-token" content="{{ csrf_token() }}">
                                                     <button type="button" onclick="confirm('Are you sure you want to delete this image : {{$img->image_name}} ?') " class="deleteRecord btn btn-danger" data-id="{{ $img->id }}" ><i class=" fa fa-trash"></i></button>
-
+                                                    @endif
                                                 @endforeach
                                             </div>
                                             <input name="gallery[]" type="file"  class="form-control" id="gallery" multiple>

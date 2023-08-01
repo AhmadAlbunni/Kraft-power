@@ -5,6 +5,7 @@ namespace App\Http\Controllers\website;
 use App\Http\Controllers\Controller;
 use App\Models\Product\Category;
 use App\Models\Product\Product;
+use App\Models\Product\ProductMedia;
 
 class ProductPageController extends Controller
 {
@@ -21,10 +22,13 @@ class ProductPageController extends Controller
         }
 
         $products = $products->get();
+        $productsFeaturedImage = ProductMedia::where('product_id', $products->pluck('id'))
+            ->where('is_featured', true)
+            ->get();
         $category = Category::where('slug', $category)->value('name');
         $categories = Category::where('status', 'active')->get();
 
-        return view('website.products.index', compact('categories', 'products', 'category'));
+        return view('website.products.index', compact('categories', 'products', 'category','productsFeaturedImage'));
     }
 
 
